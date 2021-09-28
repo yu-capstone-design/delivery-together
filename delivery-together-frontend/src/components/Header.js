@@ -9,7 +9,7 @@ const Header = () => {
         <Navbar.Brand>Delivery Together</Navbar.Brand>
         <Nav className="me-auto">
           &nbsp;
-          <Link to="/map" className="nav-link">
+          <Link to="/" className="nav-link">
             매칭 신청
           </Link>
           &nbsp;
