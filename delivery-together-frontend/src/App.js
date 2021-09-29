@@ -3,8 +3,8 @@ import { Container } from 'react-bootstrap';
 import { Route } from 'react-router';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Map from './pages/Map';
-import MatchingForm from './pages/MatchingForm';
+import Map from './pages/matching/Map';
+import MatchingForm from './pages/matching/MatchingForm';
 
 function App() {
   return (
