@@ -4,5 +4,5 @@ import com.example.deliverytogetherbackend.domain.Board;
 
 public interface BoardService {
 
-    public String registerBoard(Board board);
+    public String registerBoard(Board board) throws Exception;
 }
