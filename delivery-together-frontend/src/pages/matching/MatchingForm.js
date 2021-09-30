@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Form, Col, Button, Row, Container } from 'react-bootstrap';
 
-const MatchingForm = () => {
+const MatchingForm = (props) => {
   const [board, setBoard] = useState({
     title: '',
     category: '',
     money: '',
     content: '',
+    lat: props.location.lat,
+    lng: props.location.lng,
   });
 
   const changeValue = (e) => {
