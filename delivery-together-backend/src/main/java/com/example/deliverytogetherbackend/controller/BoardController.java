@@ -3,6 +3,7 @@ package com.example.deliverytogetherbackend.controller;
 import com.example.deliverytogetherbackend.domain.Board;
 import com.example.deliverytogetherbackend.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ public class BoardController {
 
     @CrossOrigin
     @PostMapping("/board")
-    public ResponseEntity<?> registerBoard(@RequestBody Board board){
-        return new ResponseEntity<>(boardService.registerBoard(board),)
+    public ResponseEntity<?> registerBoard(@RequestBody Board board) throws Exception {
+        return new ResponseEntity<>(boardService.registerBoard(board), HttpStatus.CREATED);
     }
 }

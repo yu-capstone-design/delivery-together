@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
 import { Route } from 'react-router';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -10,10 +9,10 @@ function App() {
   return (
     <div style={{ height: '100vh' }}>
       <Header style={{ height: '10vh' }} />
-      <Container style={{ height: '90vh' }}>
+      <div style={{ height: '90vh' }}>
         <Route path="/" exact={true} component={Map} />
         <Route path="/matchingForm" exact={true} component={MatchingForm} />
-      </Container>
+      </div>
       <Footer style={{ height: '10vh' }} />
     </div>
   );

@@ -2,6 +2,7 @@ package com.example.deliverytogetherbackend.repository;
 
 import com.example.deliverytogetherbackend.domain.Board;
 import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.Firestore;
 
 import com.google.cloud.firestore.WriteResult;
@@ -15,8 +16,8 @@ public class BoardRepository {
 
     public String insertBoard(Board board) throws Exception {
         Firestore firestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> apiFuture = firestore.collection(COLLECTION_NAME).document(board.getId().toString()).set(board);
+        ApiFuture<DocumentReference> addedDocRef = firestore.collection(COLLECTION_NAME).add(board);
 
-        return apiFuture.get().getUpdateTime().toString();
+        return addedDocRef.get().getId();
     }
 }
