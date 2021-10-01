@@ -9,13 +9,14 @@ import 양식 from '../../images/양식.png';
 import 디저트 from '../../images/디저트.png';
 import 중식 from '../../images/중식.png';
 import 야식 from '../../images/야식.png';
+import { Link } from 'react-router-dom';
 
 const Map = (props) => {
   const [markers, setMarkers] = useState([]);
 
   /* 매칭 정보 로드 */
   useEffect(() => {
-    fetch('http://localhost:8080/board')
+    fetch('http://localhost:8080/matching')
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
@@ -31,7 +32,8 @@ const Map = (props) => {
         defaultZoom={15}
       >
         {markers.map((marker, index) => (
-          <button
+          <Link
+            to={'/matching/' + marker.username}
             key={index}
             lat={marker.latitude}
             lng={marker.longitude}
@@ -46,7 +48,7 @@ const Map = (props) => {
             {marker.category === '디저트' && <img src={디저트} alt="디저트" style={{ width: 40, height: 40 }} />}
             {marker.category === '중식' && <img src={중식} alt="중식" style={{ width: 40, height: 40 }} />}
             {marker.category === '야식' && <img src={야식} alt="야식" style={{ width: 40, height: 40 }} />}
-          </button>
+          </Link>
         ))}
       </GoogleMapReact>
     </div>

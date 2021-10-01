@@ -4,7 +4,8 @@ import lombok.Data;
 
 
 @Data
-public class Board {
+public class Matching {
+    private String username;   // 사용자 이름
 
     private String title;   // 제목
 

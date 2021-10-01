@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Form, Col, Button, Row, Container } from 'react-bootstrap';
 
 const MatchingForm = (props) => {
-  const [board, setBoard] = useState({
+  const [matching, setMatching] = useState({
+    username: '',
     title: '',
     category: '',
     money: '',
@@ -13,22 +14,22 @@ const MatchingForm = (props) => {
   });
 
   const changeValue = (e) => {
-    setBoard({
-      ...board,
+    setMatching({
+      ...matching,
       [e.target.name]: e.target.value,
     });
   };
 
   /* 버튼 클릭 시 동작 정의(매칭 등록 기능) */
-  const submitBoard = (e) => {
+  const submitMatching = (e) => {
     e.preventDefault();
 
-    fetch('http://localhost:8080/board', {
+    fetch('http://localhost:8080/matching', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
-      body: JSON.stringify(board),
+      body: JSON.stringify(matching),
     })
       .then((res) => {
         console.log(res);
@@ -51,8 +52,22 @@ const MatchingForm = (props) => {
 
   return (
     <Container>
-      <Form onSubmit={submitBoard}>
+      <Form onSubmit={submitMatching}>
         <br />
+        {/* 사용자 이름 */}
+        <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+          <Form.Label column sm={2}>
+            사용자 이름
+          </Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              type="text"
+              placeholder="사용자 이름을 입력해주세요."
+              onChange={changeValue}
+              name="username"
+            />
+          </Col>
+        </Form.Group>
         {/* 제목 */}
         <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
           <Form.Label column sm={2}>

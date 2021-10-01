@@ -1,0 +1,55 @@
+package com.example.deliverytogetherbackend.repository;
+
+import com.example.deliverytogetherbackend.domain.Matching;
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.*;
+
+import com.google.firebase.cloud.FirestoreClient;
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Repository
+public class MatchingRepository {
+
+    public static final String COLLECTION_NAME = "boards";
+
+
+    public String insertMatching(Matching matching) throws Exception {
+        Firestore firestore = FirestoreClient.getFirestore();
+        ApiFuture<WriteResult> apiFuture = firestore.collection(COLLECTION_NAME).document(matching.getUsername()).set(matching);
+
+        return apiFuture.get().getUpdateTime().toString();
+    }
+
+
+    public List<Matching> selectMatchingList() throws Exception {
+        List<Matching> list = new ArrayList<>();
+
+        Firestore firestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> apiFuture = firestore.collection(COLLECTION_NAME).get();
+        List<QueryDocumentSnapshot> documents = apiFuture.get().getDocuments();
+
+        for (QueryDocumentSnapshot document : documents)
+            list.add(document.toObject(Matching.class));
+
+        return list;
+    }
+
+    public Matching selectMatchingDetail(String username) throws Exception {
+        Firestore firestore = FirestoreClient.getFirestore();
+        DocumentReference documentReference = firestore.collection(COLLECTION_NAME).document(username);
+        ApiFuture<DocumentSnapshot> apiFuture = documentReference.get();
+        DocumentSnapshot documentSnapshot = apiFuture.get();
+
+        Matching matching = null;
+
+        if (documentSnapshot.exists()) {
+            matching = documentSnapshot.toObject(Matching.class);
+            return matching;
+        } else
+            return null;
+
+    }
+}
