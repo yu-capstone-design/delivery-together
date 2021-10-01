@@ -7,8 +7,9 @@ const MatchingForm = (props) => {
     category: '',
     money: '',
     content: '',
-    lat: props.location.lat,
-    lng: props.location.lng,
+    latitude: props.location.lat,
+    longitude: props.location.lng,
+    createdAt: Date.now().toString(),
   });
 
   const changeValue = (e) => {
@@ -18,7 +19,7 @@ const MatchingForm = (props) => {
     });
   };
 
-  /* 버튼 클릭 시 동작 정의 */
+  /* 버튼 클릭 시 동작 정의(매칭 등록 기능) */
   const submitBoard = (e) => {
     e.preventDefault();
 
@@ -58,12 +59,7 @@ const MatchingForm = (props) => {
             제목
           </Form.Label>
           <Col sm={10}>
-            <Form.Control
-              type="text"
-              placeholder="제목을 입력해주세요."
-              onChange={changeValue}
-              name="title"
-            />
+            <Form.Control type="text" placeholder="제목을 입력해주세요." onChange={changeValue} name="title" />
           </Col>
         </Form.Group>
         {/* 카테고리 */}
@@ -97,12 +93,7 @@ const MatchingForm = (props) => {
             최대 지불가격
           </Form.Label>
           <Col sm={10}>
-            <Form.Control
-              type="text"
-              placeholder="최대 지불가격을 입력해주세요."
-              onChange={changeValue}
-              name="money"
-            />
+            <Form.Control type="text" placeholder="최대 지불가격을 입력해주세요." onChange={changeValue} name="money" />
           </Col>
         </Form.Group>
         {/* 내용 */}

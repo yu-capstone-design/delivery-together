@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Service
@@ -17,9 +18,12 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public String registerBoard(Board board) throws Exception {
-        LocalDateTime now=LocalDateTime.now();
-        board.setCreatedAt(now);
-
         return boardRepository.insertBoard(board);
+    }
+
+
+    @Override
+    public List<Board> getBoardList() throws Exception {
+        return boardRepository.selectBoardList();
     }
 }

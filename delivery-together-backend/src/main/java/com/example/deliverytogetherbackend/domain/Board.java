@@ -2,12 +2,9 @@ package com.example.deliverytogetherbackend.domain;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
 
 @Data
 public class Board {
-
-   // private String id;   // id
 
     private String title;   // 제목
 
@@ -17,5 +14,9 @@ public class Board {
 
     private String content;   // 내용
 
-    private LocalDateTime createdAt;   // 작성 시간
+    private double latitude;   // 위도
+
+    private double longitude;   // 경도
+
+    private String createdAt;   // 작성 시간
 }
