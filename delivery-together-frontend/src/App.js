@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Map from './pages/matching/Map';
 import MatchingCreateForm from './pages/matching/MatchingCreateForm';
 import MatchingDetail from './pages/matching/MatchingDetail';
+import MatchingUpdateForm from './pages/matching/MatchingUpdateForm';
 
 function App() {
   const [location, setLocation] = useState({
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" exact={true} render={() => <Map location={location} />} />
         <Route path="/matchingCreateForm" exact={true} render={() => <MatchingCreateForm location={location} />} />
         <Route path="/matching/:username" exact={true} component={MatchingDetail} />
+        <Route path="/matchingUpdateForm/:username" exact={true} component={MatchingUpdateForm} />
       </div>
       <Footer style={{ height: '8vh' }} />
     </div>

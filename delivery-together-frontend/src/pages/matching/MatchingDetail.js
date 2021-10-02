@@ -28,6 +28,10 @@ const MatchingDetail = (props) => {
       });
   };
 
+  const updateMathching = () => {
+    props.history.push('/matchingUpdateForm/' + username);
+  };
+
   return (
     <Container>
       <br />
@@ -42,7 +46,10 @@ const MatchingDetail = (props) => {
         <br />
         <br />
         <hr />
-        <Button variant="dark">매칭 신청</Button> <Button variant="primary">매칭 수정</Button>{' '}
+        <Button variant="dark">매칭 신청</Button>{' '}
+        <Button variant="primary" onClick={updateMathching}>
+          매칭 수정
+        </Button>{' '}
         <Button variant="danger" onClick={deleteMatching}>
           매칭 삭제
         </Button>
