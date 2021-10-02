@@ -37,6 +37,7 @@ public class MatchingRepository {
         return list;
     }
 
+
     public Matching selectMatchingDetail(String username) throws Exception {
         Firestore firestore = FirestoreClient.getFirestore();
         DocumentReference documentReference = firestore.collection(COLLECTION_NAME).document(username);
@@ -50,6 +51,13 @@ public class MatchingRepository {
             return matching;
         } else
             return null;
+    }
 
+
+    public String deleteMatching(String username){
+        Firestore firestore = FirestoreClient.getFirestore();
+        firestore.collection(COLLECTION_NAME).document(username).delete();
+
+        return username + "님의 매칭이 삭제되었습니다.";
     }
 }

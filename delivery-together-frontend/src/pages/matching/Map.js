@@ -19,7 +19,6 @@ const Map = (props) => {
     fetch('http://localhost:8080/matching')
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setMarkers(res);
       });
   }, []);

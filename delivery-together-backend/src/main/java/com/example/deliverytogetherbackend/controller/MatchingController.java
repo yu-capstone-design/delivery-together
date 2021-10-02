@@ -32,4 +32,10 @@ public class MatchingController {
     public ResponseEntity<?> getMatchingDetail(@PathVariable String username) throws Exception {
         return new ResponseEntity<>(matchingService.getMatchingDetail(username), HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @DeleteMapping("/matching/{username}")
+    public ResponseEntity<?> deleteMatching(@PathVariable String username){
+        return new ResponseEntity<>(matchingService.deleteMatching(username), HttpStatus.OK);
+    }
 }

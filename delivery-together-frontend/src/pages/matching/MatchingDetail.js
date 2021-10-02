@@ -14,7 +14,19 @@ const MatchingDetail = (props) => {
       });
   }, []);
 
-  console.log(matching);
+  const deleteMatching = () => {
+    fetch('http://localhost:8080/matching/' + username, {
+      method: 'DELETE',
+    })
+      .then((res) => res.text())
+      .then((res) => {
+        console.log(res);
+        if (res === username + '님의 매칭이 삭제되었습니다.') {
+          alert('매칭이 삭제되었습니다.');
+          props.history.push('/');
+        } else alert('매칭 삭제에 실패하였습니다.');
+      });
+  };
 
   return (
     <Container>
@@ -30,7 +42,10 @@ const MatchingDetail = (props) => {
         <br />
         <br />
         <hr />
-        <Button variant="primary">수정</Button> <Button variant="danger">삭제</Button>
+        <Button variant="dark">매칭 신청</Button> <Button variant="primary">매칭 수정</Button>{' '}
+        <Button variant="danger" onClick={deleteMatching}>
+          매칭 삭제
+        </Button>
       </div>
     </Container>
   );

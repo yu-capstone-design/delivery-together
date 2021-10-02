@@ -30,4 +30,9 @@ public class MatchingServiceImpl implements MatchingService {
     public Matching getMatchingDetail(String username) throws Exception {
         return matchingRepository.selectMatchingDetail(username);
     }
+
+    @Override
+    public String deleteMatching(String username){
+        return matchingRepository.deleteMatching(username);
+    }
 }

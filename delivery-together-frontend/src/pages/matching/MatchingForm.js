@@ -32,7 +32,7 @@ const MatchingForm = (props) => {
       body: JSON.stringify(matching),
     })
       .then((res) => {
-        console.log(res);
+        console.log(res.text());
 
         if (res.status === 201) {
           return res;
@@ -129,7 +129,9 @@ const MatchingForm = (props) => {
         {/* 버튼 */}
         <Form.Group as={Row} className="mb-3">
           <Col sm={{ span: 10, offset: 2 }}>
-            <Button type="submit">매칭 신청</Button>
+            <Button variant="dark" type="submit">
+              매칭 등록
+            </Button>
           </Col>
         </Form.Group>
       </Form>
