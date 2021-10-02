@@ -13,7 +13,7 @@ const Header = () => {
             매칭 신청
           </Link>
           &nbsp;
-          <Link to="/matchingForm" className="nav-link">
+          <Link to="/matchingCreateForm" className="nav-link">
             매칭 등록
           </Link>
         </Nav>

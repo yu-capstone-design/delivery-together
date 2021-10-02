@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Col, Button, Row, Container } from 'react-bootstrap';
 
-const MatchingForm = (props) => {
+const MatchingCreateForm = (props) => {
   const [matching, setMatching] = useState({
     username: '',
     title: '',
@@ -139,4 +139,4 @@ const MatchingForm = (props) => {
   );
 };
 
-export default MatchingForm;
+export default MatchingCreateForm;

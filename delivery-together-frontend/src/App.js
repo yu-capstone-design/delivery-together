@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Map from './pages/matching/Map';
-import MatchingForm from './pages/matching/MatchingForm';
+import MatchingCreateForm from './pages/matching/MatchingCreateForm';
 import MatchingDetail from './pages/matching/MatchingDetail';
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
       <Header style={{ height: '8vh' }} />
       <div style={{ height: '94vh' }}>
         <Route path="/" exact={true} render={() => <Map location={location} />} />
-        <Route path="/matchingForm" exact={true} render={() => <MatchingForm location={location} />} />
+        <Route path="/matchingCreateForm" exact={true} render={() => <MatchingCreateForm location={location} />} />
         <Route path="/matching/:username" exact={true} component={MatchingDetail} />
       </div>
       <Footer style={{ height: '8vh' }} />
