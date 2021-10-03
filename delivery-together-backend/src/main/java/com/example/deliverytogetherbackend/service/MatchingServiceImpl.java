@@ -32,7 +32,12 @@ public class MatchingServiceImpl implements MatchingService {
     }
 
     @Override
-    public String deleteMatching(String username){
+    public String updateMatching(String username, Matching matching) throws Exception {
+        return matchingRepository.updateMatching(username, matching);
+    }
+
+    @Override
+    public String deleteMatching(String username) {
         return matchingRepository.deleteMatching(username);
     }
 }

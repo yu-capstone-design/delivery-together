@@ -54,7 +54,15 @@ public class MatchingRepository {
     }
 
 
-    public String deleteMatching(String username){
+    public String updateMatching(String username, Matching matching) throws Exception {
+        Firestore firestore = FirestoreClient.getFirestore();
+        ApiFuture<WriteResult> apiFuture = firestore.collection(COLLECTION_NAME).document(username).set(matching);
+
+        return apiFuture.get().getUpdateTime().toString();
+    }
+
+
+    public String deleteMatching(String username) {
         Firestore firestore = FirestoreClient.getFirestore();
         firestore.collection(COLLECTION_NAME).document(username).delete();
 

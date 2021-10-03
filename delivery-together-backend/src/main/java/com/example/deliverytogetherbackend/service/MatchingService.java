@@ -12,5 +12,7 @@ public interface MatchingService {
 
     public Matching getMatchingDetail(String username) throws Exception;
 
+    public String updateMatching(String username, Matching matching) throws Exception;
+
     public String deleteMatching(String username);
 }

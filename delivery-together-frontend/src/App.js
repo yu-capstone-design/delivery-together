@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Map from './pages/matching/Map';
@@ -34,4 +35,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);

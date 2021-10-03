@@ -27,15 +27,23 @@ public class MatchingController {
         return new ResponseEntity<>(matchingService.getMatchingList(), HttpStatus.OK);
     }
 
+
     @CrossOrigin
     @GetMapping("/matching/{username}")
     public ResponseEntity<?> getMatchingDetail(@PathVariable String username) throws Exception {
         return new ResponseEntity<>(matchingService.getMatchingDetail(username), HttpStatus.OK);
     }
 
+
+    @CrossOrigin
+    @PutMapping("/matching/{username}")
+    public ResponseEntity<?> updateMatching(@PathVariable String username, @RequestBody Matching matching) throws Exception {
+        return new ResponseEntity<>(matchingService.updateMatching(username, matching), HttpStatus.OK);
+    }
+
     @CrossOrigin
     @DeleteMapping("/matching/{username}")
-    public ResponseEntity<?> deleteMatching(@PathVariable String username){
+    public ResponseEntity<?> deleteMatching(@PathVariable String username) {
         return new ResponseEntity<>(matchingService.deleteMatching(username), HttpStatus.OK);
     }
 }
