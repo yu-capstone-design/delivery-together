@@ -113,19 +113,19 @@ const MatchingUpdateForm = (props) => {
             </Form.Label>
 
             <Col sm={3}>
-              <Form.Check type="radio" label="한식" name="category" value="한식" />
-              <Form.Check type="radio" label="분식" name="category" value="분식" />
-              <Form.Check type="radio" label="디저트" name="category" value="디저트" />
+              <Form.Check type="radio" label="한식" name="category" value="한식" checked={matching.category === '한식'} />
+              <Form.Check type="radio" label="분식" name="category" value="분식" checked={matching.category === '분식'} />
+              <Form.Check type="radio" label="디저트" name="category" value="디저트" checked={matching.category === '디저트'} />
             </Col>
             <Col sm={3}>
-              <Form.Check type="radio" label="일식" name="category" value="일식" />
-              <Form.Check type="radio" label="치킨" name="category" value="치킨" />
-              <Form.Check type="radio" label="중식" name="category" value="중식" />
+              <Form.Check type="radio" label="일식" name="category" value="일식" checked={matching.category === '일식'} />
+              <Form.Check type="radio" label="치킨" name="category" value="치킨" checked={matching.category === '치킨'} />
+              <Form.Check type="radio" label="중식" name="category" value="중식" checked={matching.category === '중식'} />
             </Col>
             <Col sm={3}>
-              <Form.Check type="radio" label="피자" name="category" value="피자" />
-              <Form.Check type="radio" label="양식" name="category" value="양식" />
-              <Form.Check type="radio" label="야식" name="category" value="야식" />
+              <Form.Check type="radio" label="피자" name="category" value="피자" checked={matching.category === '피자'} />
+              <Form.Check type="radio" label="양식" name="category" value="양식" checked={matching.category === '양식'} />
+              <Form.Check type="radio" label="야식" name="category" value="야식" checked={matching.category === '야식'} />
             </Col>
             <Col sm={10}></Col>
           </Form.Group>
