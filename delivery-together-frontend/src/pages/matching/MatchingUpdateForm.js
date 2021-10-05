@@ -21,33 +21,53 @@ const MatchingUpdateForm = (props) => {
     });
   };
 
+  /* 매칭 등록 양식 검사 */
+  const checkForm = () => {
+    if (
+      matching.username === '' ||
+      matching.title === '' ||
+      matching.category === '' ||
+      matching.money === '' ||
+      matching.content === ''
+    )
+      return false;
+    else return true;
+  };
+
+  /* 버튼 클릭 시 동작 정의(매칭 수정 기능) */
   const submitMatching = (e) => {
     e.preventDefault();
 
-    fetch('http://localhost:8080/matching/' + username, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      body: JSON.stringify(matching),
-    })
-      .then((res) => {
-        console.log(res);
+    let checked = checkForm();
 
-        if (res.status === 200) {
-          return res.text();
-        } else {
-          return null;
-        }
+    if (checked) {
+      fetch('http://localhost:8080/matching/' + username, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify(matching),
       })
-      .then((res) => {
-        if (res != null) {
-          alert('매칭 정보 수정이 완료되었습니다.');
-          props.history.push('/matching/' + username);
-        } else {
-          alert('매칭 정보 수정에 실패하였습니다.');
-        }
-      });
+        .then((res) => {
+          console.log(res);
+
+          if (res.status === 200) {
+            return res.text();
+          } else {
+            return null;
+          }
+        })
+        .then((res) => {
+          if (res != null) {
+            alert('매칭 정보 수정이 완료되었습니다.');
+            props.history.push('/matching/' + username);
+          } else {
+            alert('매칭 정보 수정에 실패하였습니다.');
+          }
+        });
+    } else {
+      alert('양식을 모두 입력해주세요.');
+    }
   };
 
   return (
