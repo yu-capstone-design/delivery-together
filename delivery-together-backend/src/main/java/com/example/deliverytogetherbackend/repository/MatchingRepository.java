@@ -18,9 +18,16 @@ public class MatchingRepository {
 
     public String insertMatching(Matching matching) throws Exception {
         Firestore firestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> apiFuture = firestore.collection(COLLECTION_NAME).document(matching.getUsername()).set(matching);
+        DocumentReference documentReference = firestore.collection(COLLECTION_NAME).document(matching.getUsername());
+        ApiFuture<DocumentSnapshot> apiFuture = documentReference.get();
+        DocumentSnapshot documentSnapshot = apiFuture.get();
 
-        return apiFuture.get().getUpdateTime().toString();
+        if (documentSnapshot.exists()) {
+            return "이미 등록된 매칭이 존재합니다.";
+        }else{
+            documentReference.set(matching);
+            return "매칭 등록에 성공하였습니다.";
+        }
     }
 
 

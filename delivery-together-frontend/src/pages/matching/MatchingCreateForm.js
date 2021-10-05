@@ -48,17 +48,19 @@ const MatchingCreateForm = (props) => {
         body: JSON.stringify(matching),
       })
         .then((res) => {
-          console.log(res.text());
           if (res.status === 201) {
-            return res;
+            return res.text();
           } else {
             return null;
           }
         })
         .then((res) => {
           console.log(res);
-          if (res != null) {
+          if (res === '매칭 등록에 성공하였습니다.') {
             alert('매칭 등록에 성공하였습니다.');
+            setMatching({ ...matching, username: '', title: '', category: '', money: '', content: '' });
+          } else if (res === '이미 등록된 매칭이 존재합니다.') {
+            alert('이미 등록된 매칭이 존재합니다.');
             setMatching({ ...matching, username: '', title: '', category: '', money: '', content: '' });
           } else {
             alert('매칭 등록에 실패하였습니다.');
