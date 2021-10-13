@@ -43,8 +43,6 @@ const MatchingDetail = (props) => {
         <h5>최대 지불 가격 : {matching.money}원</h5>
         <hr />
         <h5>{matching.content}</h5>
-        <br />
-        <br />
         <hr />
         <Button variant="dark">매칭 신청</Button>{' '}
         <Button variant="primary" onClick={updateMathching}>

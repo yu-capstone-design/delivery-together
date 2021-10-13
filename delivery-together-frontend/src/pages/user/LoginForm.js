@@ -1,8 +1,10 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+  const join = () => {
+    props.history.push('/joinForm');
+  };
   return (
     <div>
       <Form style={{ marginLeft: '35%', marginRight: '35%' }}>
@@ -16,7 +18,9 @@ const LoginForm = () => {
         </Form.Group>
         <div className="d-grid gap-2">
           <Button variant="dark">로그인</Button>
-          <Button variant="secondary">회원가입</Button>
+          <Button variant="secondary" onClick={join}>
+            회원가입
+          </Button>
         </div>
       </Form>
     </div>
