@@ -1,18 +1,20 @@
 package com.example.deliverytogetherbackend.domain;
 
+import com.google.api.client.json.Json;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 
 @Data
 public class Chat {
-    @Id
-    private String id;
+
     private String msg;
     private String sender;
     private Integer roomNum;
 
-    private LocalDateTime createdAt;
+    private String createdAt;
+
+    private ArrayList<Object> example;
+
 }
