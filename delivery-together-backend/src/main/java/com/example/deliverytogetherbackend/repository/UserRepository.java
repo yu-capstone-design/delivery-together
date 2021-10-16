@@ -1,5 +1,6 @@
 package com.example.deliverytogetherbackend.repository;
 
+import com.example.deliverytogetherbackend.domain.Matching;
 import com.example.deliverytogetherbackend.domain.User;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
@@ -26,5 +27,20 @@ public class UserRepository {
             documentReference.set(user);
             return "회원가입에 성공하였습니다.";
         }
+    }
+
+    public User selectUserDetail(String username) throws Exception {
+        Firestore firestore = FirestoreClient.getFirestore();
+        DocumentReference documentReference = firestore.collection(COLLECTION_NAME).document(username);
+        ApiFuture<DocumentSnapshot> apiFuture = documentReference.get();
+        DocumentSnapshot documentSnapshot = apiFuture.get();
+
+        User user = null;
+
+        if (documentSnapshot.exists()) {
+            user = documentSnapshot.toObject(User.class);
+            return user;
+        } else
+            return null;
     }
 }
