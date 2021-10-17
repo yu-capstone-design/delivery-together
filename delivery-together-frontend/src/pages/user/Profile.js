@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { loadUerData } from '../../api/userService';
 import { Button, Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { logoutRequest } from '../../redux/actions';
+import { logoutRequest, userDataRequest } from '../../redux/actions';
 
 const Profile = ({ isLoggedIn, ...props }) => {
   const [userData, setUserData] = useState({});
@@ -10,6 +10,7 @@ const Profile = ({ isLoggedIn, ...props }) => {
   useEffect(() => {
     loadUerData().then((res) => {
       setUserData(res.data);
+      props.userDataRequest(res.data);
     });
   }, []);
 
@@ -47,6 +48,7 @@ const mapStateToProps = ({ auth }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     logoutRequest: () => dispatch(logoutRequest()),
+    userDataRequest: (data) => dispatch(userDataRequest(data)),
   };
 };
 
