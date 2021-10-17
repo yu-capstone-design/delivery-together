@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Col, Button, Row, Container } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-const MatchingCreateForm = (props) => {
+const MatchingCreateForm = ({ user, isLoggedIn, ...props }) => {
   const [matching, setMatching] = useState({
-    username: '',
+    username: user.username,
     title: '',
     category: '',
     money: '',
@@ -22,14 +23,7 @@ const MatchingCreateForm = (props) => {
 
   /* 매칭 등록 양식 검사 */
   const checkForm = () => {
-    if (
-      matching.username === '' ||
-      matching.title === '' ||
-      matching.category === '' ||
-      matching.money === '' ||
-      matching.content === ''
-    )
-      return false;
+    if (matching.title === '' || matching.category === '' || matching.money === '' || matching.content === '') return false;
     else return true;
   };
 
@@ -58,10 +52,10 @@ const MatchingCreateForm = (props) => {
           console.log(res);
           if (res === '매칭 등록에 성공하였습니다.') {
             alert('매칭 등록에 성공하였습니다.');
-            setMatching({ ...matching, username: '', title: '', category: '', money: '', content: '' });
+            setMatching({ ...matching, title: '', category: '', money: '', content: '' });
           } else if (res === '이미 등록된 매칭이 존재합니다.') {
             alert('이미 등록된 매칭이 존재합니다.');
-            setMatching({ ...matching, username: '', title: '', category: '', money: '', content: '' });
+            setMatching({ ...matching, title: '', category: '', money: '', content: '' });
           } else {
             alert('매칭 등록에 실패하였습니다.');
           }
@@ -81,13 +75,7 @@ const MatchingCreateForm = (props) => {
             사용자 이름
           </Form.Label>
           <Col sm={10}>
-            <Form.Control
-              type="text"
-              placeholder="사용자 이름을 입력해주세요."
-              onChange={changeValue}
-              name="username"
-              value={matching.username}
-            />
+            <Form.Control type="text" onChange={changeValue} name="username" value={matching.username} readOnly={true} />
           </Col>
         </Form.Group>
         {/* 제목 */}
@@ -174,4 +162,13 @@ const MatchingCreateForm = (props) => {
   );
 };
 
-export default MatchingCreateForm;
+/* store로부터 state를 가져와서 현재 컴포넌트의 props로 보냄 */
+const mapStateToProps = ({ auth }) => {
+  console.log('state', auth.user.username);
+  return {
+    user: auth.user,
+    isLoggedIn: auth.isLoggedIn,
+  };
+};
+
+export default connect(mapStateToProps)(MatchingCreateForm);
