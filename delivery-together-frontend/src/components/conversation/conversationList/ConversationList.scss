@@ -1,0 +1,7 @@
+@import 'src/pages/chat/style/_colors';
+
+#conversation-list {
+  grid-area: conversation-list;
+  background: $primary-color;
+  overflow-y: scroll;
+}
