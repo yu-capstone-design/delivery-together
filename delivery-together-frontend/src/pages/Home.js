@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from '../images/logo.png';
 
 const Home = () => {
   return (
@@ -12,7 +13,7 @@ const Home = () => {
         justifyContent: 'center',
       }}
     >
-      <h1>Delivery Together에 오신것을 환영합니다.</h1>
+      <img src={Logo} alt="로고" style={{ width: '40%' }} />
     </div>
   );
 };
