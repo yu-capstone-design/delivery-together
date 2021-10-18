@@ -3,6 +3,7 @@ import { Form, Button, Spinner, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { loginRequest, loginSuccess, loginFailure } from '../../redux/actions';
 import { userLogin } from '../../api/userService';
+import Logo from '../../images/logo.png';
 
 const LoginForm = ({ error, isLoading, ...props }) => {
   const [user, setUser] = useState({
@@ -17,30 +18,55 @@ const LoginForm = ({ error, isLoading, ...props }) => {
     });
   };
 
-  /* 로그인 요청 메서드 */
-  const loginRequest = (e) => {
-    e.preventDefault();
-    props.loginRequest();
-
-    userLogin(user).then((res) => {
-      if (res.status === 200) {
-        props.loginSuccess(res.data);
-        props.history.push('/profile');
-      } else {
-        props.loginFailure('로그인에 실패하였습니다.');
-      }
-    });
+  /* 로그인 양식 검사 */
+  const checkForm = () => {
+    if (user.username === '' || user.password === '') return false;
+    else return true;
   };
 
-  /* 회원가입 페이지 이동 메서드 */
-  const join = () => {
-    props.history.push('/join');
+  /* 로그인 요청 메서드 */
+  const submitLogin = (e) => {
+    e.preventDefault();
+
+    let checked = checkForm();
+
+    if (checked) {
+      props.loginRequest();
+
+      userLogin(user)
+        .then((res) => {
+          if (res.status === 200) {
+            props.loginSuccess(res.data);
+            props.history.push('/profile');
+          } else {
+            props.loginFailure('로그인에 실패하였습니다.');
+          }
+        })
+        .catch((err) => {
+          if (err && err.response) {
+            props.loginFailure('로그인에 실패하였습니다.');
+          } else {
+            props.loginFailure('로그인에 실패하였습니다.');
+          }
+        });
+    } else {
+      props.loginFailure('양식을 모두 입력해주세요.');
+    }
   };
 
   return (
-    <div>
-      <Form style={{ marginLeft: '35%', marginRight: '35%' }} onSubmit={loginRequest}>
-        <br />
+    <div
+      style={{
+        height: '80%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <img src={Logo} alt="로고" style={{ width: '30%' }} />
+      <Form style={{ width: '25%' }} onSubmit={submitLogin}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Control
             type="email"
@@ -61,11 +87,8 @@ const LoginForm = ({ error, isLoading, ...props }) => {
           />
         </Form.Group>
         <div className="d-grid gap-2">
-          <Button variant="dark" type="submit">
+          <Button variant="success" type="submit">
             로그인 {isLoading && <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />}
-          </Button>
-          <Button variant="secondary" onClick={join}>
-            회원가입
           </Button>
           {error && <Alert variant="danger">{error}</Alert>}
         </div>
@@ -78,7 +101,7 @@ const LoginForm = ({ error, isLoading, ...props }) => {
 const mapStateToProps = ({ auth }) => {
   console.log('state : ', auth);
   return {
-    error: auth.error,
+    error: auth.loginError,
     isLoading: auth.isLoading,
   };
 };
