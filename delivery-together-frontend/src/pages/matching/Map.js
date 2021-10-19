@@ -10,14 +10,15 @@ import 디저트 from '../../images/디저트.png';
 import 중식 from '../../images/중식.png';
 import 야식 from '../../images/야식.png';
 import { Link } from 'react-router-dom';
+import { readMatchingList } from '../../api/matchingService';
 
 const Map = (props) => {
   const [markers, setMarkers] = useState([]);
 
   /* 매칭 정보 로드 */
   useEffect(() => {
-    fetch('http://localhost:8080/matching')
-      .then((res) => res.json())
+    readMatchingList()
+      .then((res) => res.data)
       .then((res) => {
         setMarkers(res);
       });

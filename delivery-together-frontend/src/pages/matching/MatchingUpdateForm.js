@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Col, Button, Row, Container } from 'react-bootstrap';
+import { readMatchingDetail, updateMatching } from '../../api/matchingService';
 
 const MatchingUpdateForm = (props) => {
   const username = props.match.params.username;
@@ -7,8 +8,8 @@ const MatchingUpdateForm = (props) => {
   const [matching, setMatching] = useState({});
 
   useEffect(() => {
-    fetch('http://localhost:8080/matching/' + username)
-      .then((res) => res.json())
+    readMatchingDetail(username)
+      .then((res) => res.data)
       .then((res) => {
         setMatching(res);
       });
@@ -41,25 +42,18 @@ const MatchingUpdateForm = (props) => {
     let checked = checkForm();
 
     if (checked) {
-      fetch('http://localhost:8080/matching/' + username, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-        },
-        body: JSON.stringify(matching),
-      })
+      updateMatching(username, matching)
         .then((res) => {
           console.log(res);
 
           if (res.status === 200) {
-            return res.text();
+            return res.data;
           } else {
             return null;
           }
         })
         .then((res) => {
           if (res != null) {
-            alert('매칭 정보 수정이 완료되었습니다.');
             props.history.push('/matching/' + username);
           } else {
             alert('매칭 정보 수정에 실패하였습니다.');
@@ -164,7 +158,7 @@ const MatchingUpdateForm = (props) => {
         {/* 버튼 */}
         <Form.Group as={Row} className="mb-3">
           <Col sm={{ span: 10, offset: 2 }}>
-            <Button variant="dark" type="submit">
+            <Button variant="primary" type="submit">
               매칭 수정
             </Button>
           </Col>

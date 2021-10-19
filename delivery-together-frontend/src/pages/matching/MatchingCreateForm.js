@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Col, Button, Row, Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { createMatching } from '../../api/matchingService';
 
 const MatchingCreateForm = ({ user, ...props }) => {
   const [matching, setMatching] = useState({
@@ -34,16 +35,10 @@ const MatchingCreateForm = ({ user, ...props }) => {
     let checked = checkForm();
 
     if (checked) {
-      fetch('http://localhost:8080/matching', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-        },
-        body: JSON.stringify(matching),
-      })
+      createMatching(matching)
         .then((res) => {
           if (res.status === 201) {
-            return res.text();
+            return res.data;
           } else {
             return null;
           }
@@ -51,8 +46,8 @@ const MatchingCreateForm = ({ user, ...props }) => {
         .then((res) => {
           console.log(res);
           if (res === '매칭 등록에 성공하였습니다.') {
-            alert('매칭 등록에 성공하였습니다.');
             setMatching({ ...matching, title: '', category: '', money: '', content: '' });
+            props.history.push('/matching');
           } else if (res === '이미 등록된 매칭이 존재합니다.') {
             alert('이미 등록된 매칭이 존재합니다.');
             setMatching({ ...matching, title: '', category: '', money: '', content: '' });
@@ -152,7 +147,7 @@ const MatchingCreateForm = ({ user, ...props }) => {
         {/* 버튼 */}
         <Form.Group as={Row} className="mb-3">
           <Col sm={{ span: 10, offset: 2 }}>
-            <Button variant="dark" type="submit">
+            <Button variant="success" type="submit">
               매칭 등록
             </Button>
           </Col>
