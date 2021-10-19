@@ -4,6 +4,7 @@ import Logo from '../../images/logo.png';
 import { userJoin } from '../../api/userService';
 import { connect } from 'react-redux';
 import { joinRequest, joinSuccess, joinFailure } from '../../redux/actions';
+import { withRouter } from 'react-router-dom';
 
 const JoinForm = ({ error, isLoading, ...props }) => {
   const [user, setUser] = useState({
@@ -47,7 +48,7 @@ const JoinForm = ({ error, isLoading, ...props }) => {
           if (res === '회원가입에 성공하였습니다.') {
             alert('회원가입에 성공하였습니다.');
             setUser({ ...user, username: '', password: '' });
-            props.history.push('/');
+            props.history.push('/login');
           } else if (res === '중복된 계정의 회원이 존재합니다.') {
             props.joinFailure('중복된 계정의 회원이 존재합니다.');
             setUser({ ...user, username: '', password: '' });
