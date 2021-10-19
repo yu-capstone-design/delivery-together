@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { loadUerData } from '../../api/userService';
+import { loadUserData } from '../../api/userService';
 import { Button, Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { logoutRequest, userDataRequest } from '../../redux/actions';
@@ -8,7 +8,7 @@ const Profile = ({ ...props }) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    loadUerData().then((res) => {
+    loadUserData().then((res) => {
       setUserData(res.data);
       props.userDataRequest(res.data);
     });
