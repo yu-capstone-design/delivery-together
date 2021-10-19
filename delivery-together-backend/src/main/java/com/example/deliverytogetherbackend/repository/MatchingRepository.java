@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public class MatchingRepository {
 
-    public static final String COLLECTION_NAME = "boards";
+    public static final String COLLECTION_NAME = "matchings";
 
 
     public String insertMatching(Matching matching) throws Exception {
