@@ -10,6 +10,7 @@ import MatchingUpdateForm from './pages/matching/MatchingUpdateForm';
 import JoinForm from './pages/user/JoinForm';
 import LoginForm from './pages/user/LoginForm';
 import Profile from './pages/user/Profile';
+import PrivateRoute from './components/route/PrivateRoute';
 
 function App() {
   const [location, setLocation] = useState({
@@ -33,16 +34,19 @@ function App() {
 
         {/* 매칭 기능 */}
         <Route path="/matching" exact={true} render={() => <Map location={location} />} />
-        <Route path="/matchingCreateForm" exact={true} render={() => <MatchingCreateForm location={location} />} />
+        <PrivateRoute path="/matchingCreateForm" exact={true} component={MatchingCreateForm} location={location} />
+        {/* <Route path="/matchingCreateForm" exact={true} render={() => <MatchingCreateForm location={location} />} /> */}
         <Route path="/matching/:username" exact={true} component={MatchingDetail} />
-        <Route path="/matchingUpdateForm/:username" exact={true} component={MatchingUpdateForm} />
+        <PrivateRoute path="/matchingUpdateForm/:username" exact={true} component={MatchingUpdateForm} />
+        {/* <Route path="/matchingUpdateForm/:username" exact={true} component={MatchingUpdateForm} /> */}
 
         {/* 로그인, 회원가입 기능 */}
         <Route path="/login" exact={true} component={LoginForm} />
         <Route path="/join" exact={true} component={JoinForm} />
 
         {/* 개인 프로필 기능 */}
-        <Route path="/profile" exact={true} component={Profile} />
+        <PrivateRoute path="/profile" exact={true} component={Profile} />
+        {/* <Route path="/profile" exact={true} component={Profile} /> */}
       </div>
       <Footer style={{ height: '8vh' }} />
     </div>
