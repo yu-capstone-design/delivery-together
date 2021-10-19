@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 import { logoutRequest } from '../redux/actions';
 import { withRouter } from 'react-router-dom';
 
-const Header = ({ isLoggedIn, ...props }) => {
+const Header = ({ user, ...props }) => {
   const logout = () => {
     localStorage.clear();
 
     props.logoutRequest();
-    props.history.push('/');
+    props.history.push('/login');
   };
 
   return (
@@ -28,7 +28,7 @@ const Header = ({ isLoggedIn, ...props }) => {
           </Link>
         </Nav>
         <Nav>
-          {!isLoggedIn && (
+          {!localStorage.getItem('USER_KEY') && (
             <Nav className="me-auto">
               <Link to="/login" className="nav-link">
                 로그인
@@ -39,11 +39,11 @@ const Header = ({ isLoggedIn, ...props }) => {
               </Link>
             </Nav>
           )}
-          {isLoggedIn && (
-            <NavDropdown title="나의 정보" id="basic-nav-dropdown">
+          {localStorage.getItem('USER_KEY') && (
+            <NavDropdown title={user.username} id="basic-nav-dropdown">
               <NavDropdown.Item>
                 <Link to="/profile" style={{ textDecoration: 'none', color: 'black' }}>
-                  프로필 정보
+                  나의 정보
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Divider />
@@ -60,9 +60,8 @@ const Header = ({ isLoggedIn, ...props }) => {
 
 /* store로부터 state를 가져와서 현재 컴포넌트의 props로 보냄 */
 const mapStateToProps = ({ auth }) => {
-  console.log('state : ', auth);
   return {
-    isLoggedIn: auth.isLoggedIn,
+    user: auth.user,
   };
 };
 

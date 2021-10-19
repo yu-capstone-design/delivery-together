@@ -3,29 +3,39 @@ import { combineReducers } from 'redux';
 /* state(상태) */
 const authState = {
   user: {},
-  error: '',
+  joinError: '',
+  loginError: '',
   isLoading: false,
-  isLoggedIn: false,
 };
 
 /* reducer 함수 */
 const auth = (state = authState, action) => {
   switch (action.type) {
+    case 'JOIN_REQUEST':
+      return { ...state, joinError: '', isLoading: true };
+
+    case 'JOIN_SUCCESS':
+      return { ...state, joinError: '', isLoading: false };
+
+    case 'JOIN_FAILURE':
+      const joinError = action.payload;
+      return { ...state, joinError: joinError, isLoading: false };
+
     case 'LOGIN_REQUEST':
-      return { ...state, error: '', isLoading: true, isLoggedIn: false };
+      return { ...state, loginError: '', isLoading: true };
 
     case 'LOGIN_SUCCESS':
-      return { ...state, error: '', isLoading: false, isLoggedIn: true };
+      return { ...state, loginError: '', isLoading: false };
 
     case 'LOGIN_FAILURE':
-      const error = action.payload;
-      return { ...state, error: error, isLoading: false, isLoggedIn: false };
+      const loginError = action.payload;
+      return { ...state, loginError: loginError, isLoading: false };
 
     case 'LOGOUT_REQUEST':
-      return { ...state, user: {}, error: '', isLoading: false, isLoggedIn: false };
+      return { ...state, user: {}, isLoading: false };
 
     case 'USER_DATA_REQUEST':
-      return { ...state, user: action.payload, error: '', isLoading: false, isLoggedIn: true };
+      return { ...state, user: action.payload, isLoading: false };
 
     default:
       return state;

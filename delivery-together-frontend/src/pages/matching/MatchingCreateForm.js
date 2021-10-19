@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Col, Button, Row, Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-const MatchingCreateForm = ({ user, isLoggedIn, ...props }) => {
+const MatchingCreateForm = ({ user, ...props }) => {
   const [matching, setMatching] = useState({
     username: user.username,
     title: '',
@@ -164,10 +164,8 @@ const MatchingCreateForm = ({ user, isLoggedIn, ...props }) => {
 
 /* store로부터 state를 가져와서 현재 컴포넌트의 props로 보냄 */
 const mapStateToProps = ({ auth }) => {
-  console.log('state', auth.user.username);
   return {
     user: auth.user,
-    isLoggedIn: auth.isLoggedIn,
   };
 };
 

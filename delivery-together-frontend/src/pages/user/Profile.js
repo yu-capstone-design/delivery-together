@@ -4,7 +4,7 @@ import { Button, Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { logoutRequest, userDataRequest } from '../../redux/actions';
 
-const Profile = ({ isLoggedIn, ...props }) => {
+const Profile = ({ ...props }) => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Profile = ({ isLoggedIn, ...props }) => {
     localStorage.clear();
 
     props.logoutRequest();
-    props.history.push('/');
+    props.history.push('/login');
   };
 
   return (
@@ -36,14 +36,6 @@ const Profile = ({ isLoggedIn, ...props }) => {
   );
 };
 
-/* store로부터 state를 가져와서 현재 컴포넌트의 props로 보냄 */
-const mapStateToProps = ({ auth }) => {
-  console.log('state : ', auth);
-  return {
-    isLoggedIn: auth.isLoggedIn,
-  };
-};
-
 /* 현재 컴포넌트가 store의 상태를 바꾸기 위해 dispatch를 사용할 수 있게 해줌 */
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -52,4 +44,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(null, mapDispatchToProps)(Profile);
