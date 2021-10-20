@@ -35,10 +35,8 @@ function App() {
         {/* 매칭 기능 */}
         <Route path="/matching" exact={true} render={() => <Map location={location} />} />
         <PrivateRoute path="/matchingCreateForm" exact={true} component={MatchingCreateForm} location={location} />
-        {/* <Route path="/matchingCreateForm" exact={true} render={() => <MatchingCreateForm location={location} />} /> */}
         <Route path="/matching/:username" exact={true} component={MatchingDetail} />
         <PrivateRoute path="/matchingUpdateForm/:username" exact={true} component={MatchingUpdateForm} />
-        {/* <Route path="/matchingUpdateForm/:username" exact={true} component={MatchingUpdateForm} /> */}
 
         {/* 로그인, 회원가입 기능 */}
         <Route path="/login" exact={true} component={LoginForm} />
@@ -46,7 +44,6 @@ function App() {
 
         {/* 개인 프로필 기능 */}
         <PrivateRoute path="/profile" exact={true} component={Profile} />
-        {/* <Route path="/profile" exact={true} component={Profile} /> */}
       </div>
       <Footer style={{ height: '8vh' }} />
     </div>
