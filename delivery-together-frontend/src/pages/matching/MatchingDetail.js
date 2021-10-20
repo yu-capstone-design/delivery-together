@@ -26,7 +26,7 @@ const MatchingDetail = ({ user, ...props }) => {
         console.log(res);
         if (res === username + '님의 매칭이 삭제되었습니다.') {
           alert('매칭이 삭제되었습니다.');
-          props.history.push('/matching');
+          props.history.goBack();
         } else alert('매칭 삭제에 실패하였습니다.');
       });
   };
