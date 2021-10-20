@@ -35,6 +35,10 @@ const MatchingDetail = ({ user, ...props }) => {
     props.history.push('/matchingUpdateForm/' + username);
   };
 
+  const getMatching = () =>{
+    props.history.push('/chatRoom/' + username );
+  }
+
   return (
     <Container>
       <br />
@@ -47,8 +51,8 @@ const MatchingDetail = ({ user, ...props }) => {
         <hr />
         <h5>{matching.content}</h5>
         <hr />
-        {username !== myUsername && <Button variant="success">매칭 신청</Button>}{' '}
-        {username === myUsername && (
+        {username === myUsername && <Button variant="success" onClick={getMatching}>매칭 신청</Button>}{' '}
+        {username !== myUsername && (
           <Button variant="primary" onClick={updateButton}>
             매칭 수정
           </Button>

@@ -12,6 +12,9 @@ import LoginForm from './pages/user/LoginForm';
 import Profile from './pages/user/Profile';
 import PrivateRoute from './components/route/PrivateRoute';
 
+import Chat from './pages/chat/Chat';
+
+
 function App() {
   const [location, setLocation] = useState({
     lat: '',
@@ -38,12 +41,19 @@ function App() {
         <Route path="/matching/:username" exact={true} component={MatchingDetail} />
         <PrivateRoute path="/matchingUpdateForm/:username" exact={true} component={MatchingUpdateForm} />
 
+
         {/* 로그인, 회원가입 기능 */}
         <Route path="/login" exact={true} component={LoginForm} />
         <Route path="/join" exact={true} component={JoinForm} />
 
         {/* 개인 프로필 기능 */}
         <PrivateRoute path="/profile" exact={true} component={Profile} />
+
+        <Route path="/profile" exact={true} component={Profile} />
+
+        {/* 채팅 기능 */}
+        <Route path="/chatRoom/:roomNum" exact={true} component={Chat} />
+
       </div>
       <Footer style={{ height: '8vh' }} />
     </div>
