@@ -1,4 +1,8 @@
-.abc{
+.main_chat_area{
     height: 700px;
     overflow: auto;
+}
+
+.chat_head_area{
+    border-bottom: 10px;
 }
