@@ -23,6 +23,7 @@ const Chat = ({ user, ...props }) => {
       });
   }, [message.message]);
 
+  // 메세지를 전송하면 현재 저장된 메세지를 저장한후, 새로운 메세지를 추가해 보낸다
   const handleFormSubmit = (text) => {
     var updateMessage = [...message.message]
 
@@ -76,6 +77,7 @@ const Chat = ({ user, ...props }) => {
     });
   }
 
+  //사용 컴포넌트 title, chatForm ( 내부에 핸들러 이벤트가 있음)
   return (
     <div id="chat-container">
       <ChatTitle
