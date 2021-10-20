@@ -1,68 +1,52 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { conversationChanged, newMessageAdded, conversationDeleted, conversationsRequested } from './store/action';
-import ConversationSearch from '../../components/conversation/conversationSearch/ConversationSearch';
+import { newMessageAdded } from './store/action';
 import NoConversations from '../../components/conversation/noCoversations/NoConversations';
-import ConversationList from '../../components/conversation/conversationList/ConversationList';
-import NewConversation from '../../components/conversation/newConversation/NewConversation';
 import ChatTitle from '../../components/chatTitle/ChatTitle';
-import MessageList from './message/MessageList';
 import ChatForm from '../../components/chatForm/ChatForm';
 import '../chat/style/Chat.css'
+import Message from '../../components/message/Message';
 
-const Chat = ({
-                conversations,
-                selectedConversation,
-                conversationChanged,
-                onMessageSubmitted,
-                onDeleteConversation,
-                loadConversations
-              }) => {
-  useEffect(() => {
-    loadConversations();
-  }, [loadConversations]);
+const Chat = ({ user, ...props }) => {
 
-  const [textMessage, setTextMessage] = useState('');
-  const [markers, setMarkers] = useState([{example: []}]);
+  const matchingName = props.match.params.roomNum
+  const userName = user.username;
+  const roomNum = matchingName + userName;
+
+  const [message, setMessage] = useState({message:[]});
 
   useEffect(() => {
-    fetch('http://localhost:8080/chat')
+    fetch('http://localhost:8080/chat/' + roomNum)
       .then((res) => res.json())
       .then((res) => {
-        setMarkers(res);
+        setMessage(res);
       });
+  }, [message.message]);
 
-  }, [markers]);
+  const handleFormSubmit = (text) => {
+    var updateMessage = [...message.message]
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-
-    var abc = [...markers[0].example]
-    console.log("---------")
-    console.log(abc)
-
-    abc.push({
-      msg : textMessage,
-      sender: "김덕중"
+    updateMessage.push({
+      msg : text,
+      sender: userName,
+      createAt: Date.now()
     })
 
     var chat = {
-      msg : textMessage,
-      sender : '김덕중',
-      createdAt : '오늘',
-      roomNum : 11,
-      example : abc
+      lastText : text,
+      lastSender : userName,
+      message : updateMessage
     }
-    console.log(JSON.stringify(chat))
-    fetch('http://localhost:8080/chat', {
-      method: 'POST',
+
+    setMessage(chat)
+    fetch('http://localhost:8080/chat/' + roomNum, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify(chat),
     })
       .then((res) => {
-        console.log(res.text());
 
         if (res.status === 201) {
           return res;
@@ -71,67 +55,54 @@ const Chat = ({
         }
       })
       .then((res) => {
-        console.log(res);
-        if (res != null) {
-          alert('매칭 등록에 성공하였습니다.');
-        } else {
-          alert('매칭 등록에 실패하였습니다.');
-        }
       });
 
   }
 
-  let brr = markers[0].example.map((value, key) => <li key = {key}>{value.msg}</li>);
-
-  // let messageItems = markers[0].example.map((message, index) => {
-  //   return <Message
-  //     key={index}
-  //     isMyMessage={message.sender === "김덕중"}
-  //     message={message.msg} />;
-  // });
-
-  let conversationContent = (
+  // 데이터를 로딩중일 때 다음 화면을 표시 (NoConversations)
+  let messageItems = (
     <>
       <NoConversations></NoConversations>
     </>
   );
 
-  if (conversations.length > 0) {
-    conversationContent = (
-      <>
-        <MessageList conversationId={selectedConversation.id} />
-      </>
-    );
+  // 데이터를 모두 받아오면 다음 화면을 표시 (Message)
+  if (message.message.length > 0) {
+    messageItems = message.message.map((message, key) => {
+      return <Message
+        key={key}
+        isMyMessage={message.sender === userName}
+        message={message.msg} />;
+    });
   }
 
   return (
     <div id="chat-container">
       <ChatTitle
-        selectedConversation={selectedConversation}
-        onDeleteConversation={onDeleteConversation} />
-        <div className='abc'>
-          {conversationContent}
+        className='chat_head_area'
+        matchingName={matchingName} />
+        <div className='main_chat_area'>
+          {messageItems}
         </div>
       <ChatForm
-        selectedConversation={selectedConversation}
-        onMessageSubmitted={onMessageSubmitted} />
+        selectedConversation={matchingName}
+        onMessageSubmitted={handleFormSubmit}
+      />
     </div>
   );
 }
 
-const mapStateToProps = state => {
+/* store로부터 state를 가져와서 현재 컴포넌트의 props로 보냄 */
+const mapStateToProps = ({ auth }) => {
   return {
-    conversations: state.conversationState.conversations,
-    selectedConversation: state.conversationState.selectedConversation
+    user: auth.user,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  conversationChanged: conversationId => dispatch(conversationChanged(conversationId)),
   onMessageSubmitted: messageText => { dispatch(newMessageAdded(messageText)); },
-  onDeleteConversation: () => { dispatch(conversationDeleted()); },
-  loadConversations: () => { dispatch(conversationsRequested())}
 });
+
 
 export default connect(
   mapStateToProps,
