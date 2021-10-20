@@ -4,7 +4,7 @@ import Logo from '../../images/logo.png';
 import { userJoin } from '../../api/userService';
 import { connect } from 'react-redux';
 import { joinRequest, joinSuccess, joinFailure } from '../../redux/actions';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const JoinForm = ({ error, isLoading, ...props }) => {
   const [user, setUser] = useState({
@@ -100,6 +100,13 @@ const JoinForm = ({ error, isLoading, ...props }) => {
             회원가입 {isLoading && <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />}
           </Button>
           {error && <Alert variant="danger">{error}</Alert>}
+        </div>
+        <br />
+        <div class="text-center">
+          <text>이미 회원가입을 한 상태인가요? </text>
+          <Link to="/login" style={{ textDecoration: 'none', color: 'black' }}>
+            <b>로그인</b>
+          </Link>
         </div>
       </Form>
     </div>

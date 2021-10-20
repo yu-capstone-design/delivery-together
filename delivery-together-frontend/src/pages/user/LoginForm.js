@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Spinner, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { loginRequest, loginSuccess, loginFailure } from '../../redux/actions';
 import { userLogin } from '../../api/userService';
 import Logo from '../../images/logo.png';
@@ -91,6 +92,13 @@ const LoginForm = ({ error, isLoading, ...props }) => {
             로그인 {isLoading && <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />}
           </Button>
           {error && <Alert variant="danger">{error}</Alert>}
+        </div>
+        <br />
+        <div class="text-center">
+          <text>아직 회원이 아니신가요? </text>
+          <Link to="/join" style={{ textDecoration: 'none', color: 'black' }}>
+            <b>회원가입</b>
+          </Link>
         </div>
       </Form>
     </div>
