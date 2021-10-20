@@ -54,7 +54,7 @@ const MatchingUpdateForm = (props) => {
         })
         .then((res) => {
           if (res != null) {
-            props.history.push('/matching/' + username);
+            props.history.goBack();
           } else {
             alert('매칭 정보 수정에 실패하였습니다.');
           }
