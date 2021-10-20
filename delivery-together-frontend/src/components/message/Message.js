@@ -1,4 +1,5 @@
 import React from 'react';
+import profile_img from '../../images/profile.png'
 import classNames from 'classnames';
 
 import './Message.scss';
@@ -9,16 +10,15 @@ const Message = ({ isMyMessage, message }) => {
     'other-message': !isMyMessage
   });
 
-  const imageThumbnail = isMyMessage ? null : <img src={message.imageUrl} alt={message.imageAlt} />;
+  const imageThumbnail = isMyMessage ? null : <img src={profile_img} alt={message.imageAlt} />;
 
   return (
     <div className={messageClass}>
       <div className="message-content">
         {imageThumbnail}
         <div className="message-text">
-          {message.messageText}
+          {message}
         </div>
-        <div className="message-time">{message.createdAt}</div>
       </div>
     </div>
   );

@@ -36,42 +36,10 @@ const ChatForm = ({ selectedConversation, onMessageSubmitted }) => {
 
     handleFormSubmit = (e) => {
       e.preventDefault();
-      console.log(textMessage)
 
-      var chat = {
-        msg : textMessage,
-        sender : '김덕중',
-        createdAt : '오늘',
-        roomNum : 11
-      }
-      console.log(JSON.stringify(chat))
-      fetch('http://localhost:8080/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-        },
-        body: JSON.stringify(chat),
-      })
-        .then((res) => {
-          console.log(res.text());
-
-          if (res.status === 201) {
-            return res;
-          } else {
-            return null;
-          }
-        })
-        .then((res) => {
-          console.log(res);
-          if (res != null) {
-            alert('매칭 등록에 성공하였습니다.');
-          } else {
-            alert('매칭 등록에 실패하였습니다.');
-          }
-        });
+      onMessageSubmitted(textMessage)
 
       if (!isMessageEmpty(textMessage)) {
-        onMessageSubmitted(textMessage);
         setTextMessage('');
       }
     };

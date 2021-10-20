@@ -4,14 +4,14 @@ import TrashIcon from '../controls/icons/trashIcon/TrashIcon';
 
 import './ChatTitle.scss';
 
-const ChatTitle = ({ selectedConversation, onDeleteConversation }) => {
+const ChatTitle = ({ matchingName }) => {
   let chatTitleContents = null;
 
-  if (selectedConversation) {
+  if (matchingName) {
     chatTitleContents = (
       <>
-        <span>{ selectedConversation.title }</span>
-        <div onClick={ () => { onDeleteConversation(); } } title="Delete Conversation">
+        <span>{ matchingName }</span>
+        <div>
           <TrashIcon />
         </div>
       </>
