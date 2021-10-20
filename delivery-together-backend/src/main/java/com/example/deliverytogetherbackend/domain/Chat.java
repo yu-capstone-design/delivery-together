@@ -9,12 +9,9 @@ import java.util.ArrayList;
 @Data
 public class Chat {
 
-    private String msg;
-    private String sender;
-    private Integer roomNum;
+    private String lastSender;
+    private String lastText;
 
-    private String createdAt;
-
-    private ArrayList<Object> example;
+    private ArrayList<Object> message;
 
 }
