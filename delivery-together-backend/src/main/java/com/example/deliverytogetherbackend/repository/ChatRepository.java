@@ -1,6 +1,7 @@
 package com.example.deliverytogetherbackend.repository;
 
 import com.example.deliverytogetherbackend.domain.Chat;
+import com.example.deliverytogetherbackend.domain.Matching;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 
@@ -21,7 +22,7 @@ public class ChatRepository {
         List<Chat> list = new ArrayList<>();
         list.add(chat);
 
-        ApiFuture<WriteResult> apiFuture = firestore.collection(COLLECTION_NAME).document(chat.getSender()).set(chat);
+        ApiFuture<WriteResult> apiFuture = firestore.collection(COLLECTION_NAME).document(chat.getLastSender()).set(chat);
 
         return apiFuture.get().getUpdateTime().toString();
     }
@@ -37,6 +38,30 @@ public class ChatRepository {
             list.add(document.toObject(Chat.class));
 
         return list;
+    }
+
+
+    public Chat selectChatRoomData(String roomNum) throws Exception {
+        Firestore firestore = FirestoreClient.getFirestore();
+        DocumentReference documentReference = firestore.collection(COLLECTION_NAME).document(roomNum);
+        ApiFuture<DocumentSnapshot> apiFuture = documentReference.get();
+        DocumentSnapshot documentSnapshot = apiFuture.get();
+
+        Chat chat = null;
+
+        if (documentSnapshot.exists()) {
+            chat = documentSnapshot.toObject(Chat.class);
+            return chat;
+        } else
+            return null;
+    }
+
+
+    public String putChatRoomData(String roomNum, Chat chat) throws Exception {
+        Firestore firestore = FirestoreClient.getFirestore();
+        ApiFuture<WriteResult> apiFuture = firestore.collection(COLLECTION_NAME).document(roomNum).set(chat);
+
+        return apiFuture.get().getUpdateTime().toString();
     }
 
 

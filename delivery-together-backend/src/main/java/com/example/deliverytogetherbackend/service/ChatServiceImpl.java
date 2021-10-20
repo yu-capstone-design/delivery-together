@@ -30,4 +30,14 @@ public class ChatServiceImpl implements ChatService {
     public List<Chat> getChatingList() throws Exception {
         return chatRepository.selectChatList();
     }
+
+    @Override
+    public Chat getChatRoom(String roomNum) throws Exception {
+        return chatRepository.selectChatRoomData(roomNum);
+    }
+
+    @Override
+    public String updateChatRoomMsg(String roomNum, Chat chat) throws Exception {
+        return chatRepository.putChatRoomData(roomNum, chat);
+    }
 }
