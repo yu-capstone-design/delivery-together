@@ -47,7 +47,7 @@ const MatchingCreateForm = ({ user, ...props }) => {
           console.log(res);
           if (res === '매칭 등록에 성공하였습니다.') {
             setMatching({ ...matching, title: '', category: '', money: '', content: '' });
-            props.history.push('/matching');
+            props.history.push('/');
           } else if (res === '이미 등록된 매칭이 존재합니다.') {
             alert('이미 등록된 매칭이 존재합니다.');
             setMatching({ ...matching, title: '', category: '', money: '', content: '' });

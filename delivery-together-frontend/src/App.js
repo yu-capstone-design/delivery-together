@@ -14,7 +14,6 @@ import PrivateRoute from './components/route/PrivateRoute';
 
 import Chat from './pages/chat/Chat';
 
-
 function App() {
   const [location, setLocation] = useState({
     lat: '',
@@ -23,6 +22,7 @@ function App() {
 
   /* 사용자 위치 정보 받기 */
   useEffect(() => {
+    console.log('USER_KEY', localStorage.getItem('USER_KEY'));
     navigator.geolocation.getCurrentPosition(function (position) {
       setLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
     });
@@ -32,28 +32,22 @@ function App() {
     <div style={{ height: '100vh' }}>
       <Header style={{ height: '8vh' }} />
       <div style={{ height: '94vh' }}>
-        {/* 홈 페이지 */}
-        <Route path="/" exact={true} component={Home} />
-
         {/* 매칭 기능 */}
-        <Route path="/matching" exact={true} render={() => <Map location={location} />} />
+        <Route path="/" exact={true} render={() => <Map location={location} />} />
         <PrivateRoute path="/matchingCreateForm" exact={true} component={MatchingCreateForm} location={location} />
         <Route path="/matching/:username" exact={true} component={MatchingDetail} />
         <PrivateRoute path="/matchingUpdateForm/:username" exact={true} component={MatchingUpdateForm} />
-
 
         {/* 로그인, 회원가입 기능 */}
         <Route path="/login" exact={true} component={LoginForm} />
         <Route path="/join" exact={true} component={JoinForm} />
 
         {/* 개인 프로필 기능 */}
-        <PrivateRoute path="/profile" exact={true} component={Profile} />
-
+        {/* <PrivateRoute path="/profile" exact={true} component={Profile} /> */}
         <Route path="/profile" exact={true} component={Profile} />
 
         {/* 채팅 기능 */}
         <Route path="/chatRoom/:roomNum" exact={true} component={Chat} />
-
       </div>
       <Footer style={{ height: '8vh' }} />
     </div>
