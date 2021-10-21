@@ -11,6 +11,7 @@ import 중식 from '../../images/중식.png';
 import 야식 from '../../images/야식.png';
 import { Link } from 'react-router-dom';
 import { readMatchingList } from '../../api/matchingService';
+import 버튼 from '../../images/plus.png';
 
 const Map = (props) => {
   const [markers, setMarkers] = useState([]);
@@ -51,6 +52,18 @@ const Map = (props) => {
           </Link>
         ))}
       </GoogleMapReact>
+      <div
+        class="text-center"
+        style={{
+          top: -80,
+          position: 'relative',
+          background: 'transparent',
+        }}
+      >
+        <Link to="/matchingCreateForm">
+          <img src={버튼} alt="버튼" style={{ width: 80, height: 80 }} />
+        </Link>
+      </div>
     </div>
   );
 };
