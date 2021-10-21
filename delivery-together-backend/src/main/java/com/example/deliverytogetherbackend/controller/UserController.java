@@ -62,6 +62,9 @@ public class UserController {
 
         UserInfo userInfo = new UserInfo();
         userInfo.setUsername(userEntity.getUsername());
+        userInfo.setBirthdate(userEntity.getBirthdate());
+        userInfo.setCountry(userEntity.getCountry());
+        userInfo.setGender(userEntity.getGender());
         userInfo.setRole(userEntity.getAuthorities().toString());
 
         return new ResponseEntity<>(userInfo, HttpStatus.OK);

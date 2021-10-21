@@ -11,6 +11,12 @@ import java.util.Collection;
 public class User implements UserDetails {
     private String username;   // 사용자 계정
 
+    private String birthdate;   // 사용자 생일
+
+    private String country;   // 사용자 국적
+
+    private String gender;   // 사용자 성별
+
     private String password;   // 사용자 비밀번호
 
     private String role;   // 사용자 권한

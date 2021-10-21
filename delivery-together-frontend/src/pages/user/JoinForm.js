@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, Spinner, Alert } from 'react-bootstrap';
+import { Form, Button, Spinner, Alert, Row } from 'react-bootstrap';
 import Logo from '../../images/logo.png';
 import { userJoin } from '../../api/userService';
 import { connect } from 'react-redux';
@@ -9,6 +9,9 @@ import { Link } from 'react-router-dom';
 const JoinForm = ({ error, isLoading, ...props }) => {
   const [user, setUser] = useState({
     username: '',
+    birthdate: '',
+    country: '',
+    gender: '',
     password: '',
   });
 
@@ -21,13 +24,15 @@ const JoinForm = ({ error, isLoading, ...props }) => {
 
   /* 회원가입 양식 검사 */
   const checkForm = () => {
-    if (user.username === '' || user.password === '') return false;
+    if (user.username === '' || user.birthdate === '' || user.country === '' || user.gender === '' || user.password === '')
+      return false;
     else return true;
   };
 
   /* 회원가입 요청 */
   const submitJoin = (e) => {
     e.preventDefault();
+    console.log(user);
 
     let checked = checkForm();
 
@@ -47,14 +52,14 @@ const JoinForm = ({ error, isLoading, ...props }) => {
           console.log(res);
           if (res === '회원가입에 성공하였습니다.') {
             alert('회원가입에 성공하였습니다.');
-            setUser({ ...user, username: '', password: '' });
+            setUser({ ...user, username: '', birthdate: '', country: '', gender: '', password: '' });
             props.history.push('/login');
           } else if (res === '중복된 계정의 회원이 존재합니다.') {
             props.joinFailure('중복된 계정의 회원이 존재합니다.');
-            setUser({ ...user, username: '', password: '' });
+            setUser({ ...user, username: '', birthdate: '', country: '', gender: '', password: '' });
           } else {
             props.joinFailure('회원가입에 실패하였습니다.');
-            setUser({ ...user, username: '', password: '' });
+            setUser({ ...user, username: '', birthdate: '', country: '', gender: '', password: '' });
           }
         });
     } else {
@@ -76,23 +81,46 @@ const JoinForm = ({ error, isLoading, ...props }) => {
       <Form style={{ width: '25%' }} onSubmit={submitJoin}>
         {/* 이메일 */}
         <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Control type="email" placeholder="이메일" onChange={changeValue} name="username" value={user.username} />
+        </Form.Group>
+        {/* 생년월일 */}
+        <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Control
-            type="email"
-            placeholder="이메일을 입력해주세요."
+            type="text"
+            onFocus={(e) => {
+              e.currentTarget.type = 'date';
+              e.currentTarget.focus();
+            }}
+            onBlur={(e) => (e.currentTarget.type = 'text')}
+            placeholder="생년월일"
             onChange={changeValue}
-            name="username"
-            value={user.username}
-          />
+            name="birthdate"
+            value={user.birthdate}
+            class="form-control"
+          ></Form.Control>
+        </Form.Group>
+        {/* 국적 */}
+        <Form.Select className="mb-3" onChange={changeValue} name="country" value={user.country}>
+          <option value="">국적</option>
+          <option value="대한민국">대한민국</option>
+          <option value="일본">일본</option>
+          <option value="중국">중국</option>
+          <option value="미국">미국</option>
+          <option value="북한">북한</option>
+        </Form.Select>
+        {/* 성별 */}
+        <Form.Group as={Row} className="mb-3" onChange={changeValue} style={{ flexFlow: 'row' }}>
+          <Form.Label as="legend" column sm={4}>
+            성별
+          </Form.Label>
+          <Row sm={3} style={{ justifyContent: 'center', alignContent: 'center' }}>
+            <Form.Check type="radio" label="남자" name="gender" value="남자" checked={user.gender === '남자'} />
+            <Form.Check type="radio" label="여자" name="gender" value="여자" checked={user.gender === '여자'} />
+          </Row>
         </Form.Group>
         {/* 비밀번호 */}
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Control
-            type="password"
-            placeholder="비밀번호를 입력해주세요."
-            onChange={changeValue}
-            name="password"
-            value={user.password}
-          />
+          <Form.Control type="password" placeholder="비밀번호" onChange={changeValue} name="password" value={user.password} />
         </Form.Group>
         {/* 버튼 */}
         <div className="d-grid gap-2">
