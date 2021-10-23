@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { loadUserData } from '../../api/userService';
 import { readMatchingDetail } from '../../api/matchingService';
-import { Button, Container, Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { logoutRequest, userDataRequest } from '../../redux/actions';
 import { Link } from 'react-router-dom';
 import './user.css';
+import { AiOutlineMail } from 'react-icons/ai';
+import { MdCake } from 'react-icons/md';
+import { ImEarth } from 'react-icons/im';
+import { BsFillFilePersonFill } from 'react-icons/bs';
 
 const Profile = ({ ...props }) => {
   const [userData, setUserData] = useState({});
@@ -75,7 +79,7 @@ const Profile = ({ ...props }) => {
             <div class="card-body">
               <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                  <h6 class="mb-2 text-primary">
+                  <h6 class="mb-2 text-success">
                     <b>프로필 정보</b>
                   </h6>
                 </div>
@@ -84,8 +88,9 @@ const Profile = ({ ...props }) => {
                     <label for="fullName">
                       <b>이메일</b>
                     </label>
-                    <text class="form-control" style={{ marginBottom: '10px' }}>
-                      📧 {userData.username}
+                    <text class="form-control" style={{ marginBottom: '10px', display: 'flex', alignItems: 'center' }}>
+                      <AiOutlineMail />
+                      &nbsp;{userData.username}
                     </text>
                   </div>
                 </div>
@@ -94,8 +99,9 @@ const Profile = ({ ...props }) => {
                     <label for="fullName">
                       <b>생년월일</b>
                     </label>
-                    <text class="form-control" style={{ marginBottom: '10px' }}>
-                      🎂 {userData.birthdate}
+                    <text class="form-control" style={{ marginBottom: '10px', display: 'flex', alignItems: 'center' }}>
+                      <MdCake />
+                      &nbsp;{userData.birthdate}
                     </text>
                   </div>
                 </div>
@@ -104,8 +110,9 @@ const Profile = ({ ...props }) => {
                     <label for="eMail">
                       <b>국적</b>
                     </label>
-                    <text class="form-control " style={{ marginBottom: '10px' }}>
-                      🌎 {userData.country}
+                    <text class="form-control " style={{ marginBottom: '10px', display: 'flex', alignItems: 'center' }}>
+                      <ImEarth />
+                      &nbsp;{userData.country}
                     </text>
                   </div>
                 </div>
@@ -114,8 +121,9 @@ const Profile = ({ ...props }) => {
                     <label for="phone">
                       <b>성별</b>
                     </label>
-                    <text class="form-control" style={{ marginBottom: '10px' }}>
-                      👫 {userData.gender}
+                    <text class="form-control" style={{ marginBottom: '10px', display: 'flex', alignItems: 'center' }}>
+                      <BsFillFilePersonFill />
+                      &nbsp;{userData.gender}
                     </text>
                   </div>
                 </div>
@@ -123,7 +131,7 @@ const Profile = ({ ...props }) => {
               <br />
               <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                  <h6 class="mt-3 mb-2 text-primary">
+                  <h6 class="mt-3 mb-2 text-success">
                     <b>나의 매칭 목록</b>
                   </h6>
                 </div>
