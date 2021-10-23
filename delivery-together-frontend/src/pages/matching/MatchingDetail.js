@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { readMatchingDetail } from '../../api/matchingService';
 import { deleteMatching } from '../../api/matchingService';
+import { GrUserManager } from 'react-icons/gr';
+import { FaCoins } from 'react-icons/fa';
+import { MdFastfood } from 'react-icons/md';
+import { BsFillPencilFill } from 'react-icons/bs';
+import { BsFillChatDotsFill } from 'react-icons/bs';
+import { BsTrashFill } from 'react-icons/bs';
 
 const MatchingDetail = ({ user, ...props }) => {
   const username = props.match.params.username; // 게시글 작성자의 username
@@ -35,35 +41,111 @@ const MatchingDetail = ({ user, ...props }) => {
     props.history.push('/matchingUpdateForm/' + username);
   };
 
-  const getMatching = () =>{
-    props.history.push('/chatRoom/' + username );
-  }
+  const getMatching = () => {
+    props.history.push('/chatRoom/' + username);
+  };
 
   return (
-    <Container>
-      <br />
-      <div>
-        <h1>{matching.title}</h1>
-        <h3>{matching.username}</h3>
+    <div
+      style={{
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'white',
+      }}
+    >
+      <div
+        style={{
+          width: '70%',
+          padding: 50,
+          borderRadius: '20px',
+          border: '1px solid',
+          borderColor: '#BDBDBD',
+          backgroundColor: '#FAFAFA',
+        }}
+      >
+        <h1 style={{ height: '55px' }}>안녕하세요</h1>
+        <h6 style={{ height: '25px' }}>
+          <b style={{ display: 'flex', alignItems: 'center' }}>
+            <GrUserManager />
+            &nbsp;{matching.username}
+          </b>
+        </h6>
         <hr />
-        <h5>카테고리 : {matching.category}</h5>
-        <h5>최대 지불 가격 : {matching.money}원</h5>
+        <div>
+          <h6 style={{ height: '25px' }}>
+            <b style={{ display: 'flex', alignItems: 'center' }}>
+              <FaCoins />
+              &nbsp;최대 지불가격 : {matching.money}원
+            </b>
+          </h6>
+          <h6 style={{ height: '20px' }}>
+            <b style={{ display: 'flex', alignItems: 'center' }}>
+              <MdFastfood />
+              &nbsp;카테고리 : {matching.category}
+            </b>
+          </h6>
+        </div>
         <hr />
-        <h5>{matching.content}</h5>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="form-group">
+            <label for="fullName">
+              <b style={{ display: 'flex', alignItems: 'center' }}>
+                <BsFillPencilFill />
+                &nbsp;내용
+              </b>
+            </label>
+            <text class="form-control" style={{ marginTop: '10px', marginBottom: '10px', height: '130px' }}>
+              {matching.content}
+            </text>
+          </div>
+        </div>
         <hr />
-        {username !== myUsername && <Button variant="success" onClick={getMatching}>매칭 신청</Button>}{' '}
-        {username === myUsername && (
-          <Button variant="primary" onClick={updateButton}>
-            매칭 수정
-          </Button>
+        {username !== myUsername && (
+          <div class="text-center">
+            <Button
+              variant="success"
+              size="lg"
+              type="submit"
+              onClick={getMatching}
+              style={{ borderRadius: '25px', border: '1px solid', borderColor: '#0B6121', width: '150px' }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <BsFillChatDotsFill size={30} />
+              </div>
+            </Button>
+          </div>
         )}{' '}
-        {username === myUsername && (
-          <Button variant="danger" onClick={deleteButton}>
-            매칭 삭제
-          </Button>
-        )}
+        <div class="text-center">
+          {username === myUsername && (
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={updateButton}
+              style={{ borderRadius: '25px', border: '1px solid', borderColor: '#2E2EFE', width: '150px' }}
+            >
+              매칭 수정
+            </Button>
+          )}
+          &nbsp; &nbsp; &nbsp;
+          {username === myUsername && (
+            <Button
+              variant="danger"
+              size="lg"
+              onClick={deleteButton}
+              style={{ borderRadius: '25px', border: '1px solid', borderColor: '#B40404', width: '150px' }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <BsTrashFill size={30} />
+              </div>
+            </Button>
+          )}
+        </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
