@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Home from './pages/Home';
 import Map from './pages/matching/Map';
 import MatchingCreateForm from './pages/matching/MatchingCreateForm';
 import MatchingDetail from './pages/matching/MatchingDetail';
@@ -34,8 +33,10 @@ function App() {
       <div style={{ height: '94vh' }}>
         {/* 매칭 기능 */}
         <Route path="/" exact={true} render={() => <Map location={location} />} />
+        {/* <Route path="/matchingCreateForm" exact={true} component={MatchingCreateForm} /> */}
         <PrivateRoute path="/matchingCreateForm" exact={true} component={MatchingCreateForm} location={location} />
         <Route path="/matching/:username" exact={true} component={MatchingDetail} />
+        {/* <Route path="/matchingUpdateForm/:username" exact={true} component={MatchingUpdateForm} /> */}
         <PrivateRoute path="/matchingUpdateForm/:username" exact={true} component={MatchingUpdateForm} />
 
         {/* 로그인, 회원가입 기능 */}
@@ -43,8 +44,8 @@ function App() {
         <Route path="/join" exact={true} component={JoinForm} />
 
         {/* 개인 프로필 기능 */}
-        {/* <PrivateRoute path="/profile" exact={true} component={Profile} /> */}
-        <Route path="/profile" exact={true} component={Profile} />
+        <PrivateRoute path="/profile" exact={true} component={Profile} />
+        {/* <Route path="/profile" exact={true} component={Profile} /> */}
 
         {/* 채팅 기능 */}
         <Route path="/chatRoom/:roomNum" exact={true} component={Chat} />
