@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Col, Button, Row, Container } from 'react-bootstrap';
+import { Form, Col, Button, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { createMatching } from '../../api/matchingService';
 
@@ -75,7 +75,7 @@ const MatchingCreateForm = ({ user, ...props }) => {
       <Form
         style={{
           width: '40%',
-          padding: 70,
+          padding: 50,
           borderRadius: '20px',
           border: '1px solid',
           borderColor: '#BDBDBD',

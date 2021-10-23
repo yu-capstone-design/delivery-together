@@ -79,7 +79,7 @@ const MatchingUpdateForm = (props) => {
       <Form
         style={{
           width: '40%',
-          padding: 70,
+          padding: 50,
           borderRadius: '20px',
           border: '1px solid',
           borderColor: '#BDBDBD',
