@@ -11,9 +11,14 @@ import 중식 from '../../images/중식.png';
 import 야식 from '../../images/야식.png';
 import { Link } from 'react-router-dom';
 import { readMatchingList } from '../../api/matchingService';
+import 버튼 from '../../images/plus.png';
+import InfoWindow from '../../components/matching/InfoWindow';
+import '../../components/matching/InfoWindow.css';
 
 const Map = (props) => {
   const [markers, setMarkers] = useState([]);
+  const [enableMarker, setEnableMarker] = useState(false);
+  const [currentMarker, setCurrentMarker] = useState({});
 
   /* 매칭 정보 로드 */
   useEffect(() => {
@@ -24,6 +29,12 @@ const Map = (props) => {
       });
   }, []);
 
+  /* 마커 클릭 메서드 */
+  const markerClick = (marker) => {
+    setEnableMarker(true);
+    setCurrentMarker(marker);
+  };
+
   return (
     <div style={{ height: '94vh' }}>
       <GoogleMapReact
@@ -32,12 +43,15 @@ const Map = (props) => {
         defaultZoom={15}
       >
         {markers.map((marker, index) => (
-          <Link
+          <button
             to={'/matching/' + marker.username}
             key={index}
             lat={marker.latitude}
             lng={marker.longitude}
-            style={{ background: 'transparent', outline: 'none', border: '0px solid transparent' }}
+            style={{ background: 'transparent', outline: 'none', border: 'none' }}
+            onClick={() => {
+              markerClick(marker);
+            }}
           >
             {marker.category === '한식' && <img src={한식} alt="한식" style={{ width: 40, height: 40 }} />}
             {marker.category === '일식' && <img src={일식} alt="일식" style={{ width: 40, height: 40 }} />}
@@ -48,9 +62,22 @@ const Map = (props) => {
             {marker.category === '디저트' && <img src={디저트} alt="디저트" style={{ width: 40, height: 40 }} />}
             {marker.category === '중식' && <img src={중식} alt="중식" style={{ width: 40, height: 40 }} />}
             {marker.category === '야식' && <img src={야식} alt="야식" style={{ width: 40, height: 40 }} />}
-          </Link>
+          </button>
         ))}
+        {enableMarker && <InfoWindow lat={currentMarker.latitude} lng={currentMarker.longitude} marker={currentMarker} />}
       </GoogleMapReact>
+      <div
+        class="text-center"
+        style={{
+          top: -80,
+          position: 'relative',
+          background: 'transparent',
+        }}
+      >
+        <Link to="/matchingCreateForm">
+          <img src={버튼} alt="버튼" style={{ width: 80, height: 80 }} />
+        </Link>
+      </div>
     </div>
   );
 };

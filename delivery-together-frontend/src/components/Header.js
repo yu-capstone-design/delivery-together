@@ -16,17 +16,9 @@ const Header = ({ user, ...props }) => {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand>Delivery Together</Navbar.Brand>
-        <Nav className="me-auto">
-          &nbsp;
-          <Link to="/matching" className="nav-link">
-            매칭 신청
-          </Link>
-          &nbsp;
-          <Link to="/matchingCreateForm" className="nav-link">
-            매칭 등록
-          </Link>
-        </Nav>
+        <Link to="/" className="navbar-brand">
+          Delivery Together
+        </Link>
         <Nav>
           {!localStorage.getItem('USER_KEY') && (
             <Nav className="me-auto">
