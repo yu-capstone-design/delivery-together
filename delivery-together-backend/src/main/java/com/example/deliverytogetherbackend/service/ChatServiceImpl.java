@@ -1,7 +1,11 @@
 package com.example.deliverytogetherbackend.service;
 
 import com.example.deliverytogetherbackend.domain.Chat;
+import com.example.deliverytogetherbackend.domain.ChatList;
 import com.example.deliverytogetherbackend.repository.ChatRepository;
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -39,5 +43,15 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public String updateChatRoomMsg(String roomNum, Chat chat) throws Exception {
         return chatRepository.putChatRoomData(roomNum, chat);
+    }
+
+    @Override
+    public List<String> getChatRoomList() throws Exception {
+        return chatRepository.getChatRoomList();
+    }
+
+    @Override
+    public List<ChatList> getDetailRoomList(String username) throws Exception {
+        return chatRepository.getDetailRoomList(username);
     }
 }

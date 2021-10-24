@@ -11,6 +11,7 @@ public class Chat {
 
     private String lastSender;
     private String lastText;
+    private String lastSendTime;
 
     private ArrayList<Object> message;
 
