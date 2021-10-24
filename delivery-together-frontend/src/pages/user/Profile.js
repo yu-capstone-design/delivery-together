@@ -13,17 +13,19 @@ const Profile = ({ ...props }) => {
   useEffect(() => {
     /* 사용자 정보 로드 */
     loadUserData().then((res) => {
+      console.log('사용자 정보', res.data);
       setUserData(res.data);
       props.userDataRequest(res.data);
     });
+  }, []);
 
+  useEffect(() => {
     /* 사용자 매칭 정보 로드 */
     readMatchingDetail(userData.username).then((res) => {
-      console.log(res.data);
+      console.log('사용자 매칭 정보', res.data);
       setMatching(res.data);
     });
-  }, [userData]);
-
+  });
   const logout = () => {
     localStorage.clear();
 

@@ -36,7 +36,7 @@ const MatchingDetail = ({ user, ...props }) => {
   };
 
   const getMatching = () =>{
-    props.history.push('/chatRoom/' + username );
+    props.history.push('/chatRoom/' + username + myUsername );
   }
 
   return (

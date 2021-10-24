@@ -13,6 +13,7 @@ import Profile from './pages/user/Profile';
 import PrivateRoute from './components/route/PrivateRoute';
 
 import Chat from './pages/chat/Chat';
+import ChatList from './pages/chat/ChatList';
 
 
 function App() {
@@ -49,10 +50,9 @@ function App() {
         {/* 개인 프로필 기능 */}
         <PrivateRoute path="/profile" exact={true} component={Profile} />
 
-        <Route path="/profile" exact={true} component={Profile} />
-
         {/* 채팅 기능 */}
         <Route path="/chatRoom/:roomNum" exact={true} component={Chat} />
+        <Route path="/chatList" exact={true} component={ChatList} />
 
       </div>
       <Footer style={{ height: '8vh' }} />

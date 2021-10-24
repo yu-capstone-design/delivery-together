@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { newMessageAdded } from './store/action';
-import NoConversations from '../../components/conversation/noCoversations/NoConversations';
-import ChatTitle from '../../components/chatTitle/ChatTitle';
-import ChatForm from '../../components/chatForm/ChatForm';
+import NoConversations from '../../components/Chat/conversation/noCoversations/NoConversations';
+import ChatTitle from '../../components/Chat/chatTitle/ChatTitle';
+import ChatForm from '../../components/Chat/chatForm/ChatForm';
 import '../chat/style/Chat.css'
-import Message from '../../components/message/Message';
+import Message from '../../components/Chat/message/Message';
 
 const Chat = ({ user, ...props }) => {
 
-  const matchingName = props.match.params.roomNum
+  const roomNum = props.match.params.roomNum
   const userName = user.username;
-  const roomNum = matchingName + userName;
+  let matchingName = ''
+  if(roomNum.indexOf(userName) === 0){
+    matchingName = roomNum.substr(userName.length)
+  }else{
+    matchingName = roomNum.substr(0,roomNum.length - userName.length)
+  }
 
   const [message, setMessage] = useState({message:[]});
 
@@ -21,7 +26,7 @@ const Chat = ({ user, ...props }) => {
       .then((res) => {
         setMessage(res);
       });
-  }, [message.message]);
+  }, [message]);
 
   // 메세지를 전송하면 현재 저장된 메세지를 저장한후, 새로운 메세지를 추가해 보낸다
   const handleFormSubmit = (text) => {
@@ -36,10 +41,14 @@ const Chat = ({ user, ...props }) => {
     var chat = {
       lastText : text,
       lastSender : userName,
+      lastSendTime : Date.now(),
       message : updateMessage
     }
 
-    setMessage(chat)
+    if(message.message.length === 0){
+      setMessage(chat)
+    }
+
     fetch('http://localhost:8080/chat/' + roomNum, {
       method: 'PUT',
       headers: {
