@@ -9,6 +9,7 @@ const ChatList = ({ user, ...props }) => {
 
   const [chatList, setChatList] = useState([]);
 
+  //현재 로그인된 username이 포함된 채팅리스트만 받아온다
   useEffect(() => {
     fetch('http://localhost:8080/chat/chatList/' + userName)
       .then((res) => res.json())
@@ -22,6 +23,7 @@ const ChatList = ({ user, ...props }) => {
     <></>
   );
 
+  // useEffect로 받아온 정보가 0보다 크면 아래 ui를 적용시킨다
   if(chatList.length > 0) {
     listItems = (
       <>

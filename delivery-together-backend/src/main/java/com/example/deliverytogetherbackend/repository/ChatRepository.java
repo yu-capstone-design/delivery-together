@@ -81,6 +81,7 @@ public class ChatRepository {
         return chatList;
     }
 
+    //userName 이 포함된 정보만 return해준다
     public List<ChatList> getDetailRoomList(String userName) throws Exception {
 
         List<ChatList> chatList = new ArrayList<>();
