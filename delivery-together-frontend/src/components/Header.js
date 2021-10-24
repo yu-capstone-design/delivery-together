@@ -38,7 +38,7 @@ const Header = ({ user, ...props }) => {
                   나의 정보
                 </Link>
               </NavDropdown.Item>
-              <NavDropdown.Item>채팅 목록</NavDropdown.Item>
+              <NavDropdown.Item><Link to="/chatList" style={{ textDecoration: 'none', color: 'black'}}>채팅 목록</Link></NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={() => logout()} style={{ color: 'red' }}>
                 로그아웃

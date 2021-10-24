@@ -41,9 +41,9 @@ const MatchingDetail = ({ user, ...props }) => {
     props.history.push('/matchingUpdateForm/' + username);
   };
 
-  const getMatching = () => {
-    props.history.push('/chatRoom/' + username);
-  };
+  const getMatching = () =>{
+    props.history.push('/chatRoom/' + username + myUsername );
+  }
 
   return (
     <div

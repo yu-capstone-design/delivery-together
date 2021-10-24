@@ -1,5 +1,5 @@
 import React from 'react';
-import profile_img from '../../images/profile.png'
+import profile_img from '../../../images/profile.png'
 import classNames from 'classnames';
 
 import './Message.scss';

@@ -48,4 +48,15 @@ public class ChatController {
         return new ResponseEntity<>(ChatService.updateChatRoomMsg(roomNum, chat), HttpStatus.OK);
     }
 
+    @CrossOrigin
+    @GetMapping("/chat/chatList")
+    public ResponseEntity<?> getChatRoomList()throws Exception{
+        return new ResponseEntity<>(ChatService.getChatRoomList(),HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/chat/chatList/{userName}")
+    public ResponseEntity<?> getDetailRoomList(@PathVariable String userName)throws Exception{
+        return new ResponseEntity<>(ChatService.getDetailRoomList(userName),HttpStatus.OK);
+    }
 }
