@@ -22,7 +22,7 @@ export const userLogin = (user) => {
   });
 };
 
-/* 사용자 정보 로드 */
+/* 로그인 사용자 정보 요청 */
 export const loadUserData = () => {
   return axios({
     method: 'GET',
@@ -30,5 +30,13 @@ export const loadUserData = () => {
     headers: {
       Authorization: 'Bearer ' + getToken(),
     },
+  });
+};
+
+/* 게시글 작성자 정보 요청 */
+export const readUserDetail = (username) => {
+  return axios({
+    method: 'GET',
+    url: 'http://localhost:8080/user/' + username,
   });
 };

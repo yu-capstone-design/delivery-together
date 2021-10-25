@@ -1,6 +1,7 @@
 package com.example.deliverytogetherbackend.service;
 
 import com.example.deliverytogetherbackend.domain.User;
+import com.example.deliverytogetherbackend.domain.UserInfo;
 import com.example.deliverytogetherbackend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,6 +28,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public User getUserDetail(String username) throws Exception {
+        return userRepository.selectUserDetail(username);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = null;
@@ -42,4 +48,5 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         return user;
     }
+
 }

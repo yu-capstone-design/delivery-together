@@ -9,6 +9,7 @@ import MatchingUpdateForm from './pages/matching/MatchingUpdateForm';
 import JoinForm from './pages/user/JoinForm';
 import LoginForm from './pages/user/LoginForm';
 import Profile from './pages/user/Profile';
+import UserDetail from './pages/user/UserDetail';
 import PrivateRoute from './components/route/PrivateRoute';
 
 import Chat from './pages/chat/Chat';
@@ -39,6 +40,7 @@ function App() {
         <Route path="/matching/:username" exact={true} component={MatchingDetail} />
         {/* <Route path="/matchingUpdateForm/:username" exact={true} component={MatchingUpdateForm} /> */}
         <PrivateRoute path="/matchingUpdateForm/:username" exact={true} component={MatchingUpdateForm} />
+        <Route path="/user/:username" exact={true} component={UserDetail} />
 
         {/* 로그인, 회원가입 기능 */}
         <Route path="/login" exact={true} component={LoginForm} />
@@ -50,7 +52,6 @@ function App() {
         {/* 채팅 기능 */}
         <Route path="/chatRoom/:roomNum" exact={true} component={Chat} />
         <Route path="/chatList" exact={true} component={ChatList} />
-
       </div>
       <Footer style={{ height: '8vh' }} />
     </div>

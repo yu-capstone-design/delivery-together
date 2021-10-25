@@ -69,4 +69,17 @@ public class UserController {
 
         return new ResponseEntity<>(userInfo, HttpStatus.OK);
     }
+
+    @GetMapping("/user/{username}")
+    public ResponseEntity<?> getUserDetail(@PathVariable String username) throws Exception {
+        User userEntity = userServiceImpl.getUserDetail(username);
+
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUsername(userEntity.getUsername());
+        userInfo.setBirthdate(userEntity.getBirthdate());
+        userInfo.setCountry(userEntity.getCountry());
+        userInfo.setGender(userEntity.getGender());
+
+        return new ResponseEntity<>(userInfo, HttpStatus.OK);
+    }
 }
