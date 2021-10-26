@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logoutRequest } from '../redux/actions';
 import { withRouter } from 'react-router-dom';
+import { FiLogOut } from 'react-icons/fi';
 
 const Header = ({ user, ...props }) => {
   const logout = () => {
@@ -38,10 +39,15 @@ const Header = ({ user, ...props }) => {
                   나의 정보
                 </Link>
               </NavDropdown.Item>
-              <NavDropdown.Item><Link to="/chatList" style={{ textDecoration: 'none', color: 'black'}}>채팅 목록</Link></NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/chatList" style={{ textDecoration: 'none', color: 'black' }}>
+                  채팅 목록
+                </Link>
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => logout()} style={{ color: 'red' }}>
-                로그아웃
+              <NavDropdown.Item onClick={() => logout()} style={{ color: 'red', display: 'flex', alignItems: 'center' }}>
+                <FiLogOut />
+                &nbsp;로그아웃
               </NavDropdown.Item>
             </NavDropdown>
           )}
