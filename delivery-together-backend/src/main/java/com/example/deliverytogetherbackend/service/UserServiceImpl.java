@@ -1,5 +1,6 @@
 package com.example.deliverytogetherbackend.service;
 
+import com.example.deliverytogetherbackend.domain.Rating;
 import com.example.deliverytogetherbackend.domain.User;
 import com.example.deliverytogetherbackend.domain.UserInfo;
 import com.example.deliverytogetherbackend.repository.UserRepository;
@@ -30,6 +31,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User getUserDetail(String username) throws Exception {
         return userRepository.selectUserDetail(username);
+    }
+
+    @Override
+    public String registerRating(String username, Rating rating) throws Exception {
+        return userRepository.insertRating(username, rating);
+    }
+
+    @Override
+    public double getRating(String username) throws Exception {
+        return userRepository.selectRating(username);
     }
 
     @Override

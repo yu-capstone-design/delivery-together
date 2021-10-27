@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors();
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().authorizeRequests((request) -> request.antMatchers("/auth/login", "/join", "/matching/**", "/chat/**", "/user/**").permitAll()
+                .and().authorizeRequests((request) -> request.antMatchers("/auth/login", "/join", "/matching/**", "/chat/**", "/user/**", "/rating/**").permitAll()
                 .anyRequest().authenticated())
                 .addFilterBefore(new JwtAuthenticationFilter(userServiceImpl, jwtTokenHelper), UsernamePasswordAuthenticationFilter.class);
     }

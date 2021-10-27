@@ -16,4 +16,6 @@ public class UserInfo {
     private String password;   // 사용자 비밀번호
 
     private String role;   // 사용자 권한
+
+    private double ratings;   // 사용자 평점
 }

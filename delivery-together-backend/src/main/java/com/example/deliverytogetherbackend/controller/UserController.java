@@ -1,10 +1,7 @@
 package com.example.deliverytogetherbackend.controller;
 
 import com.example.deliverytogetherbackend.config.JwtTokenHelper;
-import com.example.deliverytogetherbackend.domain.LoginRequest;
-import com.example.deliverytogetherbackend.domain.LoginResponse;
-import com.example.deliverytogetherbackend.domain.User;
-import com.example.deliverytogetherbackend.domain.UserInfo;
+import com.example.deliverytogetherbackend.domain.*;
 import com.example.deliverytogetherbackend.service.UserService;
 import com.example.deliverytogetherbackend.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -57,7 +54,7 @@ public class UserController {
     }
 
     @GetMapping("/auth/userinfo")
-    public ResponseEntity<?> getUserInfo(Principal user) {
+    public ResponseEntity<?> getUserInfo(Principal user) throws Exception {
         User userEntity = (User) userServiceImpl.loadUserByUsername(user.getName());
 
         UserInfo userInfo = new UserInfo();
@@ -65,7 +62,7 @@ public class UserController {
         userInfo.setBirthdate(userEntity.getBirthdate());
         userInfo.setCountry(userEntity.getCountry());
         userInfo.setGender(userEntity.getGender());
-        userInfo.setRole(userEntity.getAuthorities().toString());
+        userInfo.setRatings(userServiceImpl.getRating(userEntity.getUsername()));
 
         return new ResponseEntity<>(userInfo, HttpStatus.OK);
     }
@@ -79,7 +76,13 @@ public class UserController {
         userInfo.setBirthdate(userEntity.getBirthdate());
         userInfo.setCountry(userEntity.getCountry());
         userInfo.setGender(userEntity.getGender());
+        userInfo.setRatings(userServiceImpl.getRating(userEntity.getUsername()));
 
         return new ResponseEntity<>(userInfo, HttpStatus.OK);
+    }
+
+    @PostMapping("/rating/{username}")
+    public ResponseEntity<?> registerRating(@PathVariable String username, @RequestBody Rating rating) throws Exception {
+        return new ResponseEntity<>(userServiceImpl.registerRating(username, rating), HttpStatus.CREATED);
     }
 }
