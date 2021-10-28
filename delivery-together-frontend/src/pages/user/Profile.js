@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { loadUserData } from '../../api/userService';
+import { loadUserData, readUserRating } from '../../api/userService';
 import { readMatchingDetail } from '../../api/matchingService';
 import { Button, Card } from 'react-bootstrap';
 import { connect } from 'react-redux';
@@ -14,6 +14,7 @@ import { BsFillFilePersonFill } from 'react-icons/bs';
 const Profile = ({ ...props }) => {
   const [userData, setUserData] = useState({});
   const [matching, setMatching] = useState({});
+  const [rating, setRating] = useState();
 
   useEffect(() => {
     /* 사용자 정보 로드 */
@@ -25,9 +26,17 @@ const Profile = ({ ...props }) => {
   }, []);
 
   useEffect(() => {
+    /* 사용자 매너점수 정보 로드 */
+    readUserRating(userData.username).then((res) => {
+      // console.log('사용자 매너점수', rating);
+      setRating(res.data);
+    });
+  });
+
+  useEffect(() => {
     /* 사용자 매칭 정보 로드 */
     readMatchingDetail(userData.username).then((res) => {
-      console.log('사용자 매칭 정보', res.data);
+      // console.log('사용자 매칭 정보', res.data);
       setMatching(res.data);
     });
   });
@@ -66,7 +75,21 @@ const Profile = ({ ...props }) => {
               >
                 <div class="user-profile">
                   <div class="user-avatar">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="남자" />
+                    {userData.gender === '남자' && (
+                      <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJAEhyTK6r7MzC84DYxAkygIiTQDygVChQ0w&usqp=CAU"
+                        alt="프로필 사진"
+                      />
+                    )}
+                    {userData.gender === '여자' && (
+                      <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9fT-a6m0Q1VspoXNU1yeRoVH6hcYodv6KrkU-KkLSv9vxad5ixP69nWYitXuw5J63eiY&usqp=CAU"
+                        alt="프로필 사진"
+                      />
+                    )}
+                    <br />
+                    <br />
+                    <h5>⭐ {rating}</h5>
                   </div>
                 </div>
               </div>

@@ -12,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.NoSuchAlgorithmException;
@@ -62,7 +63,6 @@ public class UserController {
         userInfo.setBirthdate(userEntity.getBirthdate());
         userInfo.setCountry(userEntity.getCountry());
         userInfo.setGender(userEntity.getGender());
-        userInfo.setRatings(userServiceImpl.getRating(userEntity.getUsername()));
 
         return new ResponseEntity<>(userInfo, HttpStatus.OK);
     }
@@ -76,7 +76,6 @@ public class UserController {
         userInfo.setBirthdate(userEntity.getBirthdate());
         userInfo.setCountry(userEntity.getCountry());
         userInfo.setGender(userEntity.getGender());
-        userInfo.setRatings(userServiceImpl.getRating(userEntity.getUsername()));
 
         return new ResponseEntity<>(userInfo, HttpStatus.OK);
     }
@@ -84,5 +83,10 @@ public class UserController {
     @PostMapping("/rating/{username}")
     public ResponseEntity<?> registerRating(@PathVariable String username, @RequestBody Rating rating) throws Exception {
         return new ResponseEntity<>(userServiceImpl.registerRating(username, rating), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/rating/{username}")
+    public ResponseEntity<?> getRating(@PathVariable String username) throws Exception{
+        return new ResponseEntity<>(userServiceImpl.getRating(username), HttpStatus.OK);
     }
 }

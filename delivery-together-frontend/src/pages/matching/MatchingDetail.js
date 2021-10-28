@@ -9,12 +9,15 @@ import { MdFastfood } from 'react-icons/md';
 import { BsFillPencilFill } from 'react-icons/bs';
 import { BsFillChatDotsFill } from 'react-icons/bs';
 import { BsTrashFill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+import { readUserRating } from '../../api/userService';
 
 const MatchingDetail = ({ user, ...props }) => {
   const username = props.match.params.username; // 게시글 작성자의 username
   const myUsername = user.username; // 로그인한 사용자의 username
 
   const [matching, setMatching] = useState({});
+  const [rating, setRating] = useState();
 
   useEffect(() => {
     readMatchingDetail(username)
@@ -24,6 +27,14 @@ const MatchingDetail = ({ user, ...props }) => {
         setMatching(res);
       });
   }, []);
+
+  useEffect(() => {
+    /* 사용자 매너점수 정보 로드 */
+    readUserRating(username).then((res) => {
+      // console.log('사용자 매너점수', rating);
+      setRating(res.data);
+    });
+  });
 
   const deleteButton = () => {
     deleteMatching(username)
@@ -41,9 +52,9 @@ const MatchingDetail = ({ user, ...props }) => {
     props.history.push('/matchingUpdateForm/' + username);
   };
 
-  const getMatching = () =>{
-    props.history.push('/chatRoom/' + username + myUsername );
-  }
+  const getMatching = () => {
+    props.history.push('/chatRoom/' + username + myUsername);
+  };
 
   return (
     <div
@@ -69,10 +80,13 @@ const MatchingDetail = ({ user, ...props }) => {
       >
         <h1 style={{ height: '55px' }}>안녕하세요</h1>
         <h6 style={{ height: '25px' }}>
-          <b style={{ display: 'flex', alignItems: 'center' }}>
+          <Link
+            to={'/user/' + matching.username}
+            style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'black', fontWeight: 'bold' }}
+          >
             <GrUserManager />
-            &nbsp;{matching.username}
-          </b>
+            &nbsp;{matching.username}(⭐ {rating})
+          </Link>
         </h6>
         <hr />
         <div>

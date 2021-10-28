@@ -40,3 +40,11 @@ export const readUserDetail = (username) => {
     url: 'http://localhost:8080/user/' + username,
   });
 };
+
+/* 사용자 매너점수 정보 요청 */
+export const readUserRating = (username) => {
+  return axios({
+    method: 'GET',
+    url: 'http://localhost:8080/rating/' + username,
+  });
+};

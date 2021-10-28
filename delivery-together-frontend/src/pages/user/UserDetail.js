@@ -5,11 +5,13 @@ import { AiOutlineMail } from 'react-icons/ai';
 import { MdCake } from 'react-icons/md';
 import { ImEarth } from 'react-icons/im';
 import { BsFillFilePersonFill } from 'react-icons/bs';
+import { readUserRating } from '../../api/userService';
 
 const UserDetail = (props) => {
   const username = props.match.params.username;
 
   const [userData, setUserData] = useState({});
+  const [rating, setRating] = useState();
 
   useEffect(() => {
     readUserDetail(username)
@@ -19,6 +21,14 @@ const UserDetail = (props) => {
         setUserData(res);
       });
   }, []);
+
+  useEffect(() => {
+    /* 사용자 매너점수 정보 로드 */
+    readUserRating(userData.username).then((res) => {
+      // console.log('사용자 매너점수', rating);
+      setRating(res.data);
+    });
+  });
 
   return (
     <div
@@ -47,10 +57,21 @@ const UserDetail = (props) => {
               >
                 <div class="user-profile">
                   <div class="user-avatar">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="남자" />
+                    {userData.gender === '남자' && (
+                      <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJAEhyTK6r7MzC84DYxAkygIiTQDygVChQ0w&usqp=CAU"
+                        alt="프로필 사진"
+                      />
+                    )}
+                    {userData.gender === '여자' && (
+                      <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9fT-a6m0Q1VspoXNU1yeRoVH6hcYodv6KrkU-KkLSv9vxad5ixP69nWYitXuw5J63eiY&usqp=CAU"
+                        alt="프로필 사진"
+                      />
+                    )}
                     <br />
                     <br />
-                    <h5>⭐ 4.1</h5>
+                    <h5>⭐ {rating}</h5>
                   </div>
                 </div>
               </div>
