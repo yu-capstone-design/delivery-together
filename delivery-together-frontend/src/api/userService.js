@@ -48,3 +48,12 @@ export const readUserRating = (username) => {
     url: 'http://localhost:8080/rating/' + username,
   });
 };
+
+/* 사용자 매너점수 평가 요청 */
+export const createUserRating = (username, ratingInfo) => {
+  return axios({
+    method: 'POST',
+    url: 'http://localhost:8080/rating/' + username,
+    data: ratingInfo,
+  });
+};

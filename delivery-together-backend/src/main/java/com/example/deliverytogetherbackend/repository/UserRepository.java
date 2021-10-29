@@ -61,6 +61,10 @@ public class UserRepository {
         String convertedUsername = rating.getUsername().replace(".", ",");
         map.put(convertedUsername, rating.getRating());
 
+        if(username.equals(rating.getUsername())){
+            return "본인을 평가할 수 없습니다.";
+        }
+
         if (!documentSnapshot.exists()) {
             documentReference.set(map);
         } else {

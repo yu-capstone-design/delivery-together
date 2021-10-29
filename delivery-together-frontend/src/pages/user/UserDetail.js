@@ -6,8 +6,11 @@ import { MdCake } from 'react-icons/md';
 import { ImEarth } from 'react-icons/im';
 import { BsFillFilePersonFill } from 'react-icons/bs';
 import { readUserRating } from '../../api/userService';
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const UserDetail = (props) => {
+const UserDetail = ({ user, ...props }) => {
   const username = props.match.params.username;
 
   const [userData, setUserData] = useState({});
@@ -34,7 +37,7 @@ const UserDetail = (props) => {
     <div
       class="container"
       style={{
-        height: '90%',
+        height: '100%',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -69,9 +72,15 @@ const UserDetail = (props) => {
                         alt="프로필 사진"
                       />
                     )}
-                    <br />
-                    <br />
-                    <h5>⭐ {rating}</h5>
+                    <Link
+                      to={'/rating/' + username}
+                      style={{
+                        textDecoration: 'none',
+                        color: 'black',
+                      }}
+                    >
+                      <h5 style={{ marginBottom: '15px', marginTop: '15px' }}>⭐ {rating}</h5>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -134,4 +143,11 @@ const UserDetail = (props) => {
   );
 };
 
-export default UserDetail;
+/* store로부터 state를 가져와서 현재 컴포넌트의 props로 보냄 */
+const mapStateToProps = ({ auth }) => {
+  return {
+    user: auth.user,
+  };
+};
+
+export default connect(mapStateToProps)(UserDetail);
