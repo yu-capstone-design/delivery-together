@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public double getRating(String username) throws Exception {
+    public String getRating(String username) throws Exception {
         return userRepository.selectRating(username);
     }
 

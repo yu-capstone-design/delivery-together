@@ -61,7 +61,7 @@ public class UserRepository {
         String convertedUsername = rating.getUsername().replace(".", ",");
         map.put(convertedUsername, rating.getRating());
 
-        if(username.equals(rating.getUsername())){
+        if (username.equals(rating.getUsername())) {
             return "본인을 평가할 수 없습니다.";
         }
 
@@ -78,14 +78,14 @@ public class UserRepository {
         return "매너점수 평가가 완료되었습니다.";
     }
 
-    public double selectRating(String username) throws Exception {
+    public String selectRating(String username) throws Exception {
         Firestore firestore = FirestoreClient.getFirestore();
         DocumentReference documentReference = firestore.collection(RATINGS_COLLECTION_NAME).document(username);
         ApiFuture<DocumentSnapshot> apiFuture = documentReference.get();
         DocumentSnapshot documentSnapshot = apiFuture.get();
 
         if (!documentSnapshot.exists()) {
-            return 0.0;
+            return "0.0";
         } else {
             Map<String, Object> map = documentSnapshot.getData();
 
@@ -95,8 +95,7 @@ public class UserRepository {
                 double value = (double) map.get(key);
                 rating += value;
             }
-
-            return rating / map.size();
+            return String.format("%.1f", rating / map.size());
         }
     }
 }

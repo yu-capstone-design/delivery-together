@@ -11,5 +11,5 @@ public interface UserService {
 
     public String registerRating(String username, Rating rating) throws Exception;
 
-    public double getRating(String username) throws Exception;
+    public String getRating(String username) throws Exception;
 }
