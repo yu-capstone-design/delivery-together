@@ -46,7 +46,12 @@ const UserDetail = ({ user, ...props }) => {
       }}
     >
       <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-        <div class="card h-100">
+        <div
+          class="card h-100"
+          style={{
+            borderRadius: '20px',
+          }}
+        >
           <div class="card-body">
             <div class="row gutters">
               <div
@@ -79,7 +84,7 @@ const UserDetail = ({ user, ...props }) => {
                         color: 'black',
                       }}
                     >
-                      <h5 style={{ marginBottom: '15px', marginTop: '15px' }}>⭐ {rating}</h5>
+                      <h5 style={{ marginBottom: '15px', marginTop: '15px' }}>⭐ {rating}점</h5>
                     </Link>
                   </div>
                 </div>

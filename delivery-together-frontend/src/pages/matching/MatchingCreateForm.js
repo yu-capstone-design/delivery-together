@@ -80,6 +80,7 @@ const MatchingCreateForm = ({ user, ...props }) => {
           border: '1px solid',
           borderColor: '#BDBDBD',
           backgroundColor: '#FAFAFA',
+          boxShadow: '1px 1px 1px 1px gray',
         }}
         onSubmit={submitMatching}
       >

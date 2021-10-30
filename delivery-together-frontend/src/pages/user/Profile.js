@@ -10,6 +10,7 @@ import { AiOutlineMail } from 'react-icons/ai';
 import { MdCake } from 'react-icons/md';
 import { ImEarth } from 'react-icons/im';
 import { BsFillFilePersonFill } from 'react-icons/bs';
+import { FiLogOut } from 'react-icons/fi';
 
 const Profile = ({ ...props }) => {
   const [userData, setUserData] = useState({});
@@ -28,7 +29,6 @@ const Profile = ({ ...props }) => {
   useEffect(() => {
     /* 사용자 매너점수 정보 로드 */
     readUserRating(userData.username).then((res) => {
-      // console.log('사용자 매너점수', rating);
       setRating(res.data);
     });
   });
@@ -36,7 +36,6 @@ const Profile = ({ ...props }) => {
   useEffect(() => {
     /* 사용자 매칭 정보 로드 */
     readMatchingDetail(userData.username).then((res) => {
-      // console.log('사용자 매칭 정보', res.data);
       setMatching(res.data);
     });
   });
@@ -52,7 +51,7 @@ const Profile = ({ ...props }) => {
     <div
       class="container"
       style={{
-        height: '90%',
+        height: '100%',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -62,7 +61,12 @@ const Profile = ({ ...props }) => {
     >
       <div class="row gutters">
         <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-          <div class="card h-100">
+          <div
+            class="card h-100"
+            style={{
+              borderRadius: '20px',
+            }}
+          >
             <div class="card-body">
               <div
                 class="account-settings"
@@ -89,7 +93,7 @@ const Profile = ({ ...props }) => {
                     )}
                     <br />
                     <br />
-                    <h5>⭐ {rating}</h5>
+                    <h5>⭐ {rating}점</h5>
                   </div>
                 </div>
               </div>
@@ -98,7 +102,12 @@ const Profile = ({ ...props }) => {
         </div>
 
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-          <div class="card h-100">
+          <div
+            class="card h-100"
+            style={{
+              borderRadius: '20px',
+            }}
+          >
             <div class="card-body">
               <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -198,8 +207,9 @@ const Profile = ({ ...props }) => {
               <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                   <div class="text-right">
-                    <Button variant="danger" onClick={() => logout()}>
-                      로그아웃
+                    <Button variant="danger" onClick={() => logout()} style={{ display: 'flex', alignItems: 'center' }}>
+                      <FiLogOut />
+                      &nbsp;로그아웃
                     </Button>
                   </div>
                 </div>

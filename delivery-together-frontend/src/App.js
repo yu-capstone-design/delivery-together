@@ -14,6 +14,7 @@ import PrivateRoute from './components/route/PrivateRoute';
 
 import Chat from './pages/chat/Chat';
 import ChatList from './pages/chat/ChatList';
+import RatingPage from './pages/user/RatingPage';
 
 function App() {
   const [location, setLocation] = useState({
@@ -35,12 +36,15 @@ function App() {
       <div style={{ height: '94vh' }}>
         {/* 매칭 기능 */}
         <Route path="/" exact={true} render={() => <Map location={location} />} />
-        {/* <Route path="/matchingCreateForm" exact={true} component={MatchingCreateForm} /> */}
         <PrivateRoute path="/matchingCreateForm" exact={true} component={MatchingCreateForm} location={location} />
         <Route path="/matching/:username" exact={true} component={MatchingDetail} />
-        {/* <Route path="/matchingUpdateForm/:username" exact={true} component={MatchingUpdateForm} /> */}
         <PrivateRoute path="/matchingUpdateForm/:username" exact={true} component={MatchingUpdateForm} />
+
+        {/* 매칭 등록자 프로필 기능 */}
         <Route path="/user/:username" exact={true} component={UserDetail} />
+
+        {/* 매칭 등록자 매너점수 평가 기능 */}
+        <PrivateRoute path="/rating/:username" exact={true} component={RatingPage} />
 
         {/* 로그인, 회원가입 기능 */}
         <Route path="/login" exact={true} component={LoginForm} />

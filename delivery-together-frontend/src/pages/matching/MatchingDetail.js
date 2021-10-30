@@ -31,7 +31,7 @@ const MatchingDetail = ({ user, ...props }) => {
   useEffect(() => {
     /* 사용자 매너점수 정보 로드 */
     readUserRating(username).then((res) => {
-      // console.log('사용자 매너점수', rating);
+      console.log(res.data);
       setRating(res.data);
     });
   });
@@ -76,16 +76,23 @@ const MatchingDetail = ({ user, ...props }) => {
           border: '1px solid',
           borderColor: '#BDBDBD',
           backgroundColor: '#FAFAFA',
+          boxShadow: '1px 1px 1px 1px gray',
         }}
       >
         <h1 style={{ height: '55px' }}>안녕하세요</h1>
         <h6 style={{ height: '25px' }}>
           <Link
             to={'/user/' + matching.username}
-            style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'black', fontWeight: 'bold' }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              textDecoration: 'none',
+              color: 'black',
+              fontWeight: 'bold',
+            }}
           >
             <GrUserManager />
-            &nbsp;{matching.username}(⭐ {rating})
+            &nbsp;{matching.username} (⭐ {rating}점)
           </Link>
         </h6>
         <hr />

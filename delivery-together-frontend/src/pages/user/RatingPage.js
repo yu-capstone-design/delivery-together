@@ -53,7 +53,12 @@ const RatingPage = ({ user, ...props }) => {
       }}
     >
       <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-        <div class="card h-100">
+        <div
+          class="card h-100"
+          style={{
+            borderRadius: '20px',
+          }}
+        >
           <div class="card-body">
             <div class="row gutters">
               <div

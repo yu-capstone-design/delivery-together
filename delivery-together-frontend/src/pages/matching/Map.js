@@ -44,7 +44,6 @@ const Map = (props) => {
       >
         {markers.map((marker, index) => (
           <button
-            to={'/matching/' + marker.username}
             key={index}
             lat={marker.latitude}
             lng={marker.longitude}
