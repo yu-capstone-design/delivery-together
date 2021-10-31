@@ -92,7 +92,7 @@ const MatchingDetail = ({ user, ...props }) => {
             }}
           >
             <GrUserManager />
-            &nbsp;{matching.username} (⭐ {rating}점)
+            &nbsp;{matching.username} (⭐ {rating})
           </Link>
         </h6>
         <hr />

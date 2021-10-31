@@ -85,7 +85,7 @@ public class UserRepository {
         DocumentSnapshot documentSnapshot = apiFuture.get();
 
         if (!documentSnapshot.exists()) {
-            return "0.0";
+            return "0.0점";
         } else {
             Map<String, Object> map = documentSnapshot.getData();
 
@@ -95,7 +95,7 @@ public class UserRepository {
                 double value = (double) map.get(key);
                 rating += value;
             }
-            return String.format("%.1f", rating / map.size());
+            return String.format("%.1f", rating / map.size()) + "점";
         }
     }
 }

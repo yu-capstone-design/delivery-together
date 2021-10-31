@@ -84,7 +84,7 @@ const UserDetail = ({ user, ...props }) => {
                         color: 'black',
                       }}
                     >
-                      <h5 style={{ marginBottom: '15px', marginTop: '15px' }}>⭐ {rating}점</h5>
+                      <h5 style={{ marginBottom: '15px', marginTop: '15px' }}>⭐ {rating}</h5>
                     </Link>
                   </div>
                 </div>

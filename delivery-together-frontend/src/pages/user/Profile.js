@@ -93,7 +93,7 @@ const Profile = ({ ...props }) => {
                     )}
                     <br />
                     <br />
-                    <h5>⭐ {rating}점</h5>
+                    <h5>⭐ {rating}</h5>
                   </div>
                 </div>
               </div>
