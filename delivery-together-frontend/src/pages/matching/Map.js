@@ -10,7 +10,6 @@ import 양식 from '../../images/양식.png';
 import 디저트 from '../../images/디저트.png';
 import 중식 from '../../images/중식.png';
 import 야식 from '../../images/야식.png';
-import 카테고리 from '../../images/category.png';
 import { Link } from 'react-router-dom';
 import { readMatchingList } from '../../api/matchingService';
 import 버튼 from '../../images/plus.png';
@@ -87,6 +86,7 @@ const Map = (props) => {
 
   /* 카테고리 선택 메서드 */
   const selectCategory = (category) => {
+    setEnableWindow(false);
     setCategory(category);
   };
 
@@ -164,18 +164,21 @@ const Map = (props) => {
       >
         <Dropdown>
           <Dropdown.Toggle as={CustomToggle}>안녕하세요</Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item onClick={() => selectCategory('전체')}>전체</Dropdown.Item>
+          <Dropdown.Menu style={{ borderWidth: '2px', borderColor: 'black', marginLeft: '5px', marginTop: '5px' }}>
+            <Dropdown.Item onClick={() => selectCategory('전체')}> 🍽️ 전체</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item onClick={() => selectCategory('한식')}>한식</Dropdown.Item>
-            <Dropdown.Item onClick={() => selectCategory('일식')}>일식</Dropdown.Item>
-            <Dropdown.Item onClick={() => selectCategory('피자')}>피자</Dropdown.Item>
-            <Dropdown.Item onClick={() => selectCategory('분식')}>분식</Dropdown.Item>
-            <Dropdown.Item onClick={() => selectCategory('치킨')}> 치킨</Dropdown.Item>
-            <Dropdown.Item onClick={() => selectCategory('양식')}> 양식</Dropdown.Item>
-            <Dropdown.Item onClick={() => selectCategory('디저트')}>디저트</Dropdown.Item>
-            <Dropdown.Item onClick={() => selectCategory('중식')}>중식</Dropdown.Item>
-            <Dropdown.Item onClick={() => selectCategory('야식')}>야식</Dropdown.Item>
+
+            <Dropdown.Item onClick={() => selectCategory('한식')}> 🍚 한식</Dropdown.Item>
+            <Dropdown.Item onClick={() => selectCategory('일식')}> 🍣 일식</Dropdown.Item>
+            <Dropdown.Item onClick={() => selectCategory('피자')}> 🍕 피자</Dropdown.Item>
+
+            <Dropdown.Item onClick={() => selectCategory('분식')}> 🥘 분식</Dropdown.Item>
+            <Dropdown.Item onClick={() => selectCategory('치킨')}> 🍗 치킨</Dropdown.Item>
+            <Dropdown.Item onClick={() => selectCategory('양식')}> 🍝 양식</Dropdown.Item>
+
+            <Dropdown.Item onClick={() => selectCategory('디저트')}> 🍰 디저트</Dropdown.Item>
+            <Dropdown.Item onClick={() => selectCategory('중식')}> 🥡 중식</Dropdown.Item>
+            <Dropdown.Item onClick={() => selectCategory('야식')}> 🍲 야식</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
