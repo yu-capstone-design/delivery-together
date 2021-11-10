@@ -6,7 +6,6 @@ import { MdCake } from 'react-icons/md';
 import { ImEarth } from 'react-icons/im';
 import { BsFillFilePersonFill } from 'react-icons/bs';
 import { readUserRating } from '../../api/userService';
-import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -50,6 +49,7 @@ const UserDetail = ({ user, ...props }) => {
           class="card h-100"
           style={{
             borderRadius: '20px',
+            borderWidth: '2px',
           }}
         >
           <div class="card-body">

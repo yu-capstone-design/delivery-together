@@ -65,6 +65,7 @@ const Profile = ({ ...props }) => {
             class="card h-100"
             style={{
               borderRadius: '20px',
+              borderWidth: '2px',
             }}
           >
             <div class="card-body">
@@ -106,6 +107,7 @@ const Profile = ({ ...props }) => {
             class="card h-100"
             style={{
               borderRadius: '20px',
+              borderWidth: '2px',
             }}
           >
             <div class="card-body">
