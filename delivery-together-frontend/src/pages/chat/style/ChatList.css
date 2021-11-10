@@ -1,8 +1,7 @@
-
-.chat_list_header{
-    font-size: 30px;
-    font-weight: bold;
-    width: 75%;
-    margin: 20px auto;
-
+.chat_list_header {
+  font-size: 30px;
+  width: 75%;
+  margin: 40px auto;
+  display: flex;
+  align-items: center;
 }
