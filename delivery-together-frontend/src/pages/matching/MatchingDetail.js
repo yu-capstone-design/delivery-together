@@ -99,14 +99,14 @@ const MatchingDetail = ({ user, ...props }) => {
         <div>
           <h6 style={{ height: '25px' }}>
             <b style={{ display: 'flex', alignItems: 'center' }}>
-              <FaCoins />
-              &nbsp;최대 지불가격 : {matching.money}원
+              <MdFastfood />
+              &nbsp;카테고리 : {matching.category}
             </b>
           </h6>
           <h6 style={{ height: '20px' }}>
             <b style={{ display: 'flex', alignItems: 'center' }}>
-              <MdFastfood />
-              &nbsp;카테고리 : {matching.category}
+              <FaCoins />
+              &nbsp;최대 지불가격 : {matching.money}원
             </b>
           </h6>
         </div>

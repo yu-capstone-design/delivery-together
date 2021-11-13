@@ -18,48 +18,7 @@ import '../../components/matching/InfoWindow.css';
 import CustomToggle from '../../components/matching/CustomToggle';
 
 const Map = (props) => {
-  const [markers, setMarkers] = useState([
-    {
-      category: '치킨',
-      content: '아아아',
-      createdAt: '1635049153536',
-      latitude: 35.8347735,
-      longitude: 128.7558721,
-      money: 12222,
-      title: '치킨치킨',
-      username: 'ejrwnd@naver.com',
-    },
-    {
-      category: '중식',
-      content: '먹자먹어',
-      createdAt: '1635140192233',
-      latitude: 35.8310444,
-      longitude: 128.7600795,
-      money: 9000,
-      title: '짜장면 같이 드실분~',
-      username: 'iby1223@daum.net',
-    },
-    {
-      category: '치킨',
-      content: '치킨 먹을 사람~',
-      createdAt: '1634609158383',
-      latitude: 35.8356375,
-      longitude: 128.759403,
-      money: 8000,
-      title: '안녕하세요 치킨 먹어요',
-      username: 'iby5989@daum.net',
-    },
-    {
-      category: '분식',
-      content: '굿',
-      createdAt: '1634609628827',
-      latitude: 35.8337624,
-      longitude: 128.752683,
-      money: 7000,
-      title: '안녕하세요 떡볶이 먹어요',
-      username: 'iby5989@naver.com',
-    },
-  ]);
+  const [markers, setMarkers] = useState([]);
 
   const [enableWindow, setEnableWindow] = useState(false);
   const [currentWindow, setCurrentWindow] = useState({});
