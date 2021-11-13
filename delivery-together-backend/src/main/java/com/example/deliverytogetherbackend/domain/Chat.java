@@ -12,6 +12,8 @@ public class Chat {
     private String lastSender;
     private String lastText;
     private String lastSendTime;
+    private Boolean matchingUserCheck;
+    private Boolean chatUserCheck;
 
     private ArrayList<Object> message;
 

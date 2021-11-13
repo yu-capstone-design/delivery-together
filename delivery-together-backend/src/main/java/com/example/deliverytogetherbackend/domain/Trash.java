@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 @Data
-public class ChatList {
+public class Trash {
 
     private String roomId;
     private String matchingName;

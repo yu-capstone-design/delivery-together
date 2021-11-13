@@ -11,11 +11,14 @@ const Chat = ({ user, ...props }) => {
 
   const roomNum = props.match.params.roomNum
   const userName = user.username;
+  let myState = ""
   let matchingName = ''
   if(roomNum.indexOf(userName) === 0){
     matchingName = roomNum.substr(userName.length)
+    myState="matchingUser"
   }else{
     matchingName = roomNum.substr(0,roomNum.length - userName.length)
+    myState="chatUser"
   }
 
   const [message, setMessage] = useState({message:[]});
@@ -35,14 +38,22 @@ const Chat = ({ user, ...props }) => {
     updateMessage.push({
       msg : text,
       sender: userName,
-      createAt: Date.now()
+      createAt: Date()
     })
 
     var chat = {
       lastText : text,
       lastSender : userName,
       lastSendTime : Date.now(),
+      matchingUserCheck : false,
+      chatUserCheck : false,
       message : updateMessage
+    }
+
+    if(myState === "chatUser"){
+      chat.chatUserCheck = true
+    }else{
+      chat.matchingUserCheck = true
     }
 
     if(message.message.length === 0){
@@ -82,7 +93,9 @@ const Chat = ({ user, ...props }) => {
       return <Message
         key={key}
         isMyMessage={message.sender === userName}
-        message={message.msg} />;
+        message={message.msg}
+        messageSendTime={message.createAt}
+      />;
     });
   }
 

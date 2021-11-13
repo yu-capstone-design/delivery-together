@@ -10,7 +10,8 @@ const ConversationList = ({ conversations, props}) => {
       key={ conversation.id }
       isActive={ false }
       props={props}
-      conversation={ conversation } />;
+      conversation={ conversation }
+    />;
   });
 
   return (

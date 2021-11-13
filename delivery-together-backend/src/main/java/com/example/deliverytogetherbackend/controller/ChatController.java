@@ -6,6 +6,7 @@ import com.example.deliverytogetherbackend.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
@@ -13,6 +14,7 @@ import reactor.core.scheduler.Schedulers;
 
 @RequiredArgsConstructor
 @RestController
+@EnableAsync
 public class ChatController {
     private final ChatService ChatService;
 
@@ -37,14 +39,14 @@ public class ChatController {
 
     @CrossOrigin
     @GetMapping("/chat/{roomNum}")
-    public ResponseEntity<?> getMatchingDetail(@PathVariable String roomNum) throws Exception {
+    public ResponseEntity<?> getChatRoom(@PathVariable String roomNum) throws Exception {
         return new ResponseEntity<>(ChatService.getChatRoom(roomNum), HttpStatus.OK);
     }
 
 
     @CrossOrigin
     @PutMapping("/chat/{roomNum}")
-    public ResponseEntity<?> updateMatching(@PathVariable String roomNum, @RequestBody Chat chat) throws Exception {
+    public ResponseEntity<?> updateChatRoomMsg(@PathVariable String roomNum, @RequestBody Chat chat) throws Exception {
         return new ResponseEntity<>(ChatService.updateChatRoomMsg(roomNum, chat), HttpStatus.OK);
     }
 
@@ -59,4 +61,23 @@ public class ChatController {
     public ResponseEntity<?> getDetailRoomList(@PathVariable String userName)throws Exception{
         return new ResponseEntity<>(ChatService.getDetailRoomList(userName),HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @GetMapping(value = "/chat/abc")
+    public ResponseEntity<?> abc()throws Exception{
+        return new ResponseEntity<>(ChatService.abc(),HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/chat/www")
+    public ResponseEntity<?> www()throws Exception{
+        return new ResponseEntity<>(ChatService.abc(),HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/chat/rrr")
+    public ResponseEntity<?> rrr()throws Exception{
+        return new ResponseEntity<>(ChatService.abc(),HttpStatus.OK);
+    }
+
 }

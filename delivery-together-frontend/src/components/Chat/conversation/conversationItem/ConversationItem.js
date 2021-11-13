@@ -16,7 +16,10 @@ const ConversationItem = ({ conversation, isActive, props }) => {
       }}
     >
       <img src={profile_img} alt="프로필" />
-      <div className="title-text">{conversation.matchingName}</div>
+      <div className="title-text">
+        {conversation.matchingName}
+        <div className={(conversation.isMatching && !conversation.chat.matchingUserCheck)||(!conversation.isMatching && !conversation.chat.chatUserCheck) ? 'conversation-new-message' : 'conversation-hidden'}/>
+      </div>
       <div className="created-date">{checkTime(conversation.chat.lastSendTime)}</div>
       <div className="conversation-message">{conversation.chat.lastText}</div>
     </div>

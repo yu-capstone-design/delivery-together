@@ -22,12 +22,10 @@ const ChatForm = ({ selectedConversation, onMessageSubmitted }) => {
   if (selectedConversation) {
     formContents = (
       <>
-        <div title="Add Attachment">
-          <AttachmentIcon />
-        </div>
         <input
+          className=''
           type="text"
-          placeholder="type a message"
+          placeholder="메시지를 입력해주세요."
           value={textMessage}
           onChange={ (e) => { setTextMessage(e.target.value); } } />
         <FormButton disabled={ disableButton }>Send</FormButton>

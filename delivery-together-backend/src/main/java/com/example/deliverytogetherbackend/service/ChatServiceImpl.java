@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
 
 @Service
@@ -53,5 +54,10 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public List<ChatList> getDetailRoomList(String username) throws Exception {
         return chatRepository.getDetailRoomList(username);
+    }
+
+    @Override
+    public List<String> abc() throws Exception {
+        return chatRepository.getChatDataRealTime();
     }
 }

@@ -11,16 +11,18 @@ const ChatTitle = ({ matchingName }) => {
     chatTitleContents = (
       <>
         <span>{ matchingName }</span>
-        <div>
-          <TrashIcon />
-        </div>
       </>
     );
   }
 
   return (
     <div id="chat-title">
+      <div>
       { chatTitleContents }
+      </div>
+      <div className='chat_title_label'>
+        님과의 채팅
+      </div>
     </div>
   );
 }

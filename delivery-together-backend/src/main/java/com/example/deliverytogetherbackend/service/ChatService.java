@@ -9,6 +9,7 @@ import com.google.cloud.firestore.QuerySnapshot;
 import reactor.core.publisher.Flux;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
 public interface ChatService {
 
@@ -26,4 +27,6 @@ public interface ChatService {
     public List<String> getChatRoomList() throws Exception;
 
     public List<ChatList> getDetailRoomList(String username) throws Exception;
+
+    public List<String> abc() throws Exception;
 }
