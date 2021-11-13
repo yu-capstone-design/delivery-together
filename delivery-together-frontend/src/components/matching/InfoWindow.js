@@ -1,6 +1,8 @@
 import React from 'react';
 import './InfoWindow.css';
 import { Link } from 'react-router-dom';
+import { FaCoins } from 'react-icons/fa';
+import { MdFastfood } from 'react-icons/md';
 
 const InfoWindow = ({ marker }) => {
   return (
@@ -13,12 +15,15 @@ const InfoWindow = ({ marker }) => {
         </Link>
         <div className="info_etc">
           <p>
-            <b>카테고리 : </b>
-            <text>{marker.category}</text>
+            <b style={{ display: 'flex', alignItems: 'center' }}>
+              <MdFastfood />
+              &nbsp;카테고리 : {marker.category}
+            </b>
             <br />
-            <br />
-            <b>최대 지불가격 : </b>
-            <text>{marker.money}원</text>
+            <b style={{ display: 'flex', alignItems: 'center' }}>
+              <FaCoins />
+              &nbsp;최대 지불가격 : {marker.money}원
+            </b>
           </p>
         </div>
       </div>
