@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logoutRequest } from '../redux/actions';
 import { withRouter } from 'react-router-dom';
+import './style/Header.css'
 
 const Header = ({ user, ...props }) => {
   const logout = () => {
@@ -12,6 +13,45 @@ const Header = ({ user, ...props }) => {
     props.logoutRequest();
     props.history.push('/login');
   };
+
+  const [chatAlarm, setChatAlarm] = useState([]);
+  const [numAlarm, setNumAlarm] = useState(0);
+
+
+  useEffect(() => {
+    if(user.username !== undefined){
+      fetch('http://localhost:8080/chat/chatList/' + user.username)
+        .then((res) => res.json())
+        .then((res) => {
+          setChatAlarm(res)
+        });
+
+      let num = 0
+      for(let x=0; x<chatAlarm.length; x++){
+        if(chatAlarm[x].isMatching && !chatAlarm[x].chat.matchingUserCheck){
+            num++
+        }
+        else if(!chatAlarm[x].isMatching && !chatAlarm[x].chat.chatUserCheck){
+            num++
+        }
+      }
+      setNumAlarm(num)
+    }
+
+  }, [chatAlarm]);
+
+  let alarm = (
+    <>
+    </>
+  );
+
+  if(numAlarm>0){
+    alarm = (
+      <div className='header_alarm_area'>
+        {numAlarm}
+      </div>
+    )
+  }
 
   return (
     <Navbar bg="dark" variant="dark">
@@ -32,18 +72,21 @@ const Header = ({ user, ...props }) => {
             </Nav>
           )}
           {localStorage.getItem('USER_KEY') && (
-            <NavDropdown title={user.username} id="basic-nav-dropdown">
-              <NavDropdown.Item>
-                <Link to="/profile" style={{ textDecoration: 'none', color: 'black' }}>
-                  나의 정보
-                </Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item><Link to="/chatList" style={{ textDecoration: 'none', color: 'black'}}>채팅 목록</Link></NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => logout()} style={{ color: 'red' }}>
-                로그아웃
-              </NavDropdown.Item>
-            </NavDropdown>
+            <div className='header_area'>
+              <NavDropdown title={user.username} id="basic-nav-dropdown">
+                <NavDropdown.Item>
+                  <Link to="/profile" style={{ textDecoration: 'none', color: 'black' }}>
+                    나의 정보
+                  </Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item><Link to="/chatList" style={{ textDecoration: 'none', color: 'black'}}>채팅 목록</Link></NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item onClick={() => logout()} style={{ color: 'red' }}>
+                  로그아웃
+                </NavDropdown.Item>
+              </NavDropdown>
+              {alarm}
+            </div>
           )}
         </Nav>
       </Container>

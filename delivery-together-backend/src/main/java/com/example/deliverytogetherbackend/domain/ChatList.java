@@ -11,6 +11,7 @@ public class ChatList {
 
     private String roomId;
     private String matchingName;
+    private Boolean isMatching;
     private Chat chat;
 
 }
