@@ -1,6 +1,7 @@
 .main_chat_area{
-    height: 600px;
+    height: 80vh;
     overflow: auto;
+    margin-top: 20px;
 }
 
 .chat_head_area{
