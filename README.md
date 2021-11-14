@@ -27,7 +27,7 @@
 2. Get a free android, ios key at [Google Cloud](https://console.cloud.google.com/home/dashboard?project=deliverytogether-fdb&_ga=2.181757795.5140705.1630379894-826656968.1617737960&_gac=1.22410569.1630379921.Cj0KCQjwg7KJBhDyARIsAHrAXaH6I8vIlJzMWEmZdf1GnFqcx9188eOzIe88P0iESWFcMnn95rbiVUUaAm00EALw_wcB&pli=1)
 3. Clone the repo
 >```
->git clone https://github.com/Smileman1/DeliveryTogether.git
+>git clone https://github.com/yu-capstone-design/delivery-together.git
 >```
 4. Install NPM packages
 >```
