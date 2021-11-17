@@ -88,7 +88,7 @@
 </br>
 
 ## 7️⃣ 화면 구성도
-<img src="https://user-images.githubusercontent.com/61148914/142226995-37546da8-3768-49e7-9fca-d369ecaad884.JPG" style="zoom:100%;">
+<img src="https://user-images.githubusercontent.com/61148914/142235462-87438236-a339-42da-9667-35bd5877091f.JPG" style="zoom:100%;">
 
 <img src="https://user-images.githubusercontent.com/61148914/142232078-244de1c6-a627-4eb1-8534-0e068672da84.JPG" style="zoom:100%;">
 
