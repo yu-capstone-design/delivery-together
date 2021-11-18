@@ -1,20 +1,20 @@
 # Delivery Together
 
-## 1️⃣ 서비스 소개
+## 서비스 소개
 <img src="https://user-images.githubusercontent.com/61148914/142221023-44ee2847-866f-4007-a41d-24b4cdf2a708.png" width="60%">
 
 * 배달음식을 같이 주문할 사용자를 찾도록 매칭 서비스를 제공해 주는 애플리케이션입니다.
 
-* 지도상에 등록된 매칭 정보를 통해 선호하는 사용자에게 실시간 채팅 기능을 통해 매칭 신청을 할 수 있습니다.
+* 지도상에 등록된 매칭 정보를 확인하고, 선호하는 사용자에게 실시간 채팅 기능을 통해 매칭 신청을 할 수 있습니다.
 </br>
 
-## 2️⃣ 팀원
+## 팀원
 * 임빈영 : https://github.com/qlsdud0604
 
 * 김덕중 : https://github.com/Smileman1
 </br>
 
-## 3️⃣ 기술 스택
+## 기술 스택
 * IDE
 ```
  - Visual Studio Code
@@ -47,7 +47,7 @@
 ```
 </br>
 
-## 4️⃣ 프로젝트 포커스
+## 프로젝트 포커스
 * github에 작업 사항을 올릴 때, comment를 필수로 남겼습니다.
 * 효율적인 형상관리를 위해 브랜치 전략을 세웠습니다.
 * 어떠한 기술을 사용할 때는 그 기술을 사용하는 이유를 파악하고 사용하였습니다.
@@ -58,7 +58,7 @@
 * 모든 팀원들이 동일한 환경에서 작업할 수 있도록 노력하였습니다.
 </br>
 
-## 5️⃣ 브랜치 전략
+## 브랜치 전략
 * `main` : 배포시 사용하는 브랜치
 * `develop` : 다음 출시 버전을 개발하는 브랜치
   * 다음 릴리즈를 위해 언제든 배포될 수 있는 상태
@@ -72,7 +72,7 @@
 * `hotfix` : 배포 버전에서 생긴 문제로 긴급한 트러블 슈팅이 필요할 때 개발이 진행되는 브랜치
 </br>
 
-## 6️⃣ Commit Message 컨벤션
+## Commit Message 컨벤션
 * `Add` : 클래스, 설정파일 등의 새로운 파일 추가
 * `Feat` : 새로운 기능 추가
 * `Fix` : 버그 수정
@@ -87,17 +87,19 @@
 * `Remove` : 사용하지 않는 파일 혹은 폴더를 삭제하는 경우
 </br>
 
-## 7️⃣ 화면 구성도
+## 화면 구성도
 <img src="https://user-images.githubusercontent.com/61148914/142235462-87438236-a339-42da-9667-35bd5877091f.JPG" style="zoom:100%;">
 
 <img src="https://user-images.githubusercontent.com/61148914/142232078-244de1c6-a627-4eb1-8534-0e068672da84.JPG" style="zoom:100%;">
 
 <img src="https://user-images.githubusercontent.com/61148914/142230956-fff3c5dd-3e1d-49f3-98fd-6597a20d2ebc.JPG" style="zoom:100%;">
 
+<img src="https://user-images.githubusercontent.com/61148914/142393926-313af957-81f6-456b-81d1-042b316eec69.JPG" style="zoom:100%;">
+
 <img src="https://user-images.githubusercontent.com/61148914/142233065-8fc93b8d-aac1-4b73-8fdf-cec3637ab7e2.JPG" style="zoom:100%;">
 
 <img src="https://user-images.githubusercontent.com/61148914/142234128-588eb5b3-f069-4af6-9a0a-d37e2a1a1478.JPG" style="zoom:100%;">
+</br>
 
-
-
-
+## 프로젝트 시연
+* 업데이트 예정
