@@ -102,4 +102,4 @@
 </br>
 
 ## 프로젝트 시연
-* 업데이트 예정
+* https://www.youtube.com/watch?v=OAZtWIabdJw
